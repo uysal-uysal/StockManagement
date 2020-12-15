@@ -38,6 +38,7 @@
             this.productRegistrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addNewCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.breadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.drinksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,15 +49,14 @@
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addNewCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bottomPanel = new System.Windows.Forms.Panel();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.menuStrip1.SuspendLayout();
             this.bottomPanel.SuspendLayout();
             this.SuspendLayout();
@@ -128,6 +128,13 @@
             this.productToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.productToolStripMenuItem.Text = "Product";
             // 
+            // addNewCategoryToolStripMenuItem
+            // 
+            this.addNewCategoryToolStripMenuItem.Name = "addNewCategoryToolStripMenuItem";
+            this.addNewCategoryToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.addNewCategoryToolStripMenuItem.Text = "Add New Category";
+            this.addNewCategoryToolStripMenuItem.Click += new System.EventHandler(this.addNewCategoryToolStripMenuItem_Click);
+            // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -139,55 +146,55 @@
             this.womenswearToolStripMenuItem,
             this.toolsToolStripMenuItem});
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // breadToolStripMenuItem
             // 
             this.breadToolStripMenuItem.Name = "breadToolStripMenuItem";
-            this.breadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.breadToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.breadToolStripMenuItem.Text = "bread";
             this.breadToolStripMenuItem.Click += new System.EventHandler(this.breadToolStripMenuItem_Click);
             // 
             // drinksToolStripMenuItem
             // 
             this.drinksToolStripMenuItem.Name = "drinksToolStripMenuItem";
-            this.drinksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.drinksToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.drinksToolStripMenuItem.Text = "drinks";
             this.drinksToolStripMenuItem.Click += new System.EventHandler(this.drinksToolStripMenuItem_Click);
             // 
             // fruitsToolStripMenuItem
             // 
             this.fruitsToolStripMenuItem.Name = "fruitsToolStripMenuItem";
-            this.fruitsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fruitsToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.fruitsToolStripMenuItem.Text = "fruits";
             this.fruitsToolStripMenuItem.Click += new System.EventHandler(this.fruitsToolStripMenuItem_Click);
             // 
             // vegetablesToolStripMenuItem
             // 
             this.vegetablesToolStripMenuItem.Name = "vegetablesToolStripMenuItem";
-            this.vegetablesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.vegetablesToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.vegetablesToolStripMenuItem.Text = "vegetables";
             this.vegetablesToolStripMenuItem.Click += new System.EventHandler(this.vegetablesToolStripMenuItem_Click);
             // 
             // menswearToolStripMenuItem
             // 
             this.menswearToolStripMenuItem.Name = "menswearToolStripMenuItem";
-            this.menswearToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.menswearToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.menswearToolStripMenuItem.Text = "menswear";
             this.menswearToolStripMenuItem.Click += new System.EventHandler(this.menswearToolStripMenuItem_Click);
             // 
             // womenswearToolStripMenuItem
             // 
             this.womenswearToolStripMenuItem.Name = "womenswearToolStripMenuItem";
-            this.womenswearToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.womenswearToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.womenswearToolStripMenuItem.Text = "womenswear";
             this.womenswearToolStripMenuItem.Click += new System.EventHandler(this.womenswearToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.toolsToolStripMenuItem.Text = "tools";
             this.toolsToolStripMenuItem.Click += new System.EventHandler(this.toolsToolStripMenuItem_Click);
             // 
@@ -195,13 +202,6 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // addNewCategoryToolStripMenuItem
-            // 
-            this.addNewCategoryToolStripMenuItem.Name = "addNewCategoryToolStripMenuItem";
-            this.addNewCategoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.addNewCategoryToolStripMenuItem.Text = "Add New Category";
-            this.addNewCategoryToolStripMenuItem.Click += new System.EventHandler(this.addNewCategoryToolStripMenuItem_Click);
             // 
             // bottomPanel
             // 
@@ -214,106 +214,10 @@
             this.bottomPanel.Controls.Add(this.simpleButton3);
             this.bottomPanel.Controls.Add(this.simpleButton2);
             this.bottomPanel.Controls.Add(this.simpleButton1);
-            this.bottomPanel.Location = new System.Drawing.Point(0, 486);
+            this.bottomPanel.Location = new System.Drawing.Point(0, 328);
             this.bottomPanel.Name = "bottomPanel";
-            this.bottomPanel.Size = new System.Drawing.Size(754, 241);
+            this.bottomPanel.Size = new System.Drawing.Size(754, 402);
             this.bottomPanel.TabIndex = 0;
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Appearance.Options.UseTextOptions = true;
-            this.simpleButton1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.simpleButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("simpleButton1.BackgroundImage")));
-            this.simpleButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.simpleButton1.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.simpleButton1.Location = new System.Drawing.Point(11, 13);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(205, 200);
-            this.simpleButton1.TabIndex = 0;
-            this.simpleButton1.Text = "Bread";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
-            // 
-            // simpleButton2
-            // 
-            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.simpleButton2.Appearance.Options.UseFont = true;
-            this.simpleButton2.Appearance.Options.UseTextOptions = true;
-            this.simpleButton2.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.simpleButton2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("simpleButton2.BackgroundImage")));
-            this.simpleButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.simpleButton2.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.simpleButton2.Location = new System.Drawing.Point(263, 13);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(205, 200);
-            this.simpleButton2.TabIndex = 1;
-            this.simpleButton2.Text = "Drinks";
-            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
-            // 
-            // simpleButton3
-            // 
-            this.simpleButton3.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.simpleButton3.Appearance.Options.UseFont = true;
-            this.simpleButton3.Appearance.Options.UseTextOptions = true;
-            this.simpleButton3.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.simpleButton3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("simpleButton3.BackgroundImage")));
-            this.simpleButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.simpleButton3.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.simpleButton3.Location = new System.Drawing.Point(508, 13);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(205, 200);
-            this.simpleButton3.TabIndex = 2;
-            this.simpleButton3.Text = "Fruits";
-            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
-            // 
-            // simpleButton4
-            // 
-            this.simpleButton4.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.simpleButton4.Appearance.Options.UseFont = true;
-            this.simpleButton4.Appearance.Options.UseTextOptions = true;
-            this.simpleButton4.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.simpleButton4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("simpleButton4.BackgroundImage")));
-            this.simpleButton4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.simpleButton4.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.simpleButton4.Location = new System.Drawing.Point(11, 262);
-            this.simpleButton4.Name = "simpleButton4";
-            this.simpleButton4.Size = new System.Drawing.Size(205, 200);
-            this.simpleButton4.TabIndex = 3;
-            this.simpleButton4.Text = "Vegetables";
-            this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
-            // 
-            // simpleButton5
-            // 
-            this.simpleButton5.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.simpleButton5.Appearance.Options.UseFont = true;
-            this.simpleButton5.Appearance.Options.UseTextOptions = true;
-            this.simpleButton5.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.simpleButton5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("simpleButton5.BackgroundImage")));
-            this.simpleButton5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.simpleButton5.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.simpleButton5.Location = new System.Drawing.Point(263, 262);
-            this.simpleButton5.Name = "simpleButton5";
-            this.simpleButton5.Size = new System.Drawing.Size(205, 200);
-            this.simpleButton5.TabIndex = 4;
-            this.simpleButton5.Text = "Men\'s Wear";
-            this.simpleButton5.Click += new System.EventHandler(this.simpleButton5_Click);
-            // 
-            // simpleButton6
-            // 
-            this.simpleButton6.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.simpleButton6.Appearance.Options.UseFont = true;
-            this.simpleButton6.Appearance.Options.UseTextOptions = true;
-            this.simpleButton6.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.simpleButton6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("simpleButton6.BackgroundImage")));
-            this.simpleButton6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.simpleButton6.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.simpleButton6.Location = new System.Drawing.Point(508, 259);
-            this.simpleButton6.Name = "simpleButton6";
-            this.simpleButton6.Size = new System.Drawing.Size(205, 200);
-            this.simpleButton6.TabIndex = 5;
-            this.simpleButton6.Text = "Women\'s Clothing";
-            this.simpleButton6.Click += new System.EventHandler(this.simpleButton6_Click);
             // 
             // simpleButton7
             // 
@@ -324,11 +228,107 @@
             this.simpleButton7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("simpleButton7.BackgroundImage")));
             this.simpleButton7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.simpleButton7.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.simpleButton7.Location = new System.Drawing.Point(11, 511);
+            this.simpleButton7.Location = new System.Drawing.Point(15, 511);
             this.simpleButton7.Name = "simpleButton7";
             this.simpleButton7.Size = new System.Drawing.Size(205, 200);
             this.simpleButton7.TabIndex = 6;
             this.simpleButton7.Text = "Tools";
+            // 
+            // simpleButton6
+            // 
+            this.simpleButton6.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.simpleButton6.Appearance.Options.UseFont = true;
+            this.simpleButton6.Appearance.Options.UseTextOptions = true;
+            this.simpleButton6.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.simpleButton6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("simpleButton6.BackgroundImage")));
+            this.simpleButton6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.simpleButton6.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.simpleButton6.Location = new System.Drawing.Point(515, 260);
+            this.simpleButton6.Name = "simpleButton6";
+            this.simpleButton6.Size = new System.Drawing.Size(205, 200);
+            this.simpleButton6.TabIndex = 5;
+            this.simpleButton6.Text = "Women\'s Clothing";
+            this.simpleButton6.Click += new System.EventHandler(this.simpleButton6_Click);
+            // 
+            // simpleButton5
+            // 
+            this.simpleButton5.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.simpleButton5.Appearance.Options.UseFont = true;
+            this.simpleButton5.Appearance.Options.UseTextOptions = true;
+            this.simpleButton5.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.simpleButton5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("simpleButton5.BackgroundImage")));
+            this.simpleButton5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.simpleButton5.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.simpleButton5.Location = new System.Drawing.Point(265, 260);
+            this.simpleButton5.Name = "simpleButton5";
+            this.simpleButton5.Size = new System.Drawing.Size(205, 200);
+            this.simpleButton5.TabIndex = 4;
+            this.simpleButton5.Text = "Men\'s Wear";
+            this.simpleButton5.Click += new System.EventHandler(this.simpleButton5_Click);
+            // 
+            // simpleButton4
+            // 
+            this.simpleButton4.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.simpleButton4.Appearance.Options.UseFont = true;
+            this.simpleButton4.Appearance.Options.UseTextOptions = true;
+            this.simpleButton4.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.simpleButton4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("simpleButton4.BackgroundImage")));
+            this.simpleButton4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.simpleButton4.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.simpleButton4.Location = new System.Drawing.Point(15, 260);
+            this.simpleButton4.Name = "simpleButton4";
+            this.simpleButton4.Size = new System.Drawing.Size(205, 200);
+            this.simpleButton4.TabIndex = 3;
+            this.simpleButton4.Text = "Vegetables";
+            this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
+            // 
+            // simpleButton3
+            // 
+            this.simpleButton3.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.simpleButton3.Appearance.Options.UseFont = true;
+            this.simpleButton3.Appearance.Options.UseTextOptions = true;
+            this.simpleButton3.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.simpleButton3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("simpleButton3.BackgroundImage")));
+            this.simpleButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.simpleButton3.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.simpleButton3.Location = new System.Drawing.Point(515, 15);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(205, 200);
+            this.simpleButton3.TabIndex = 2;
+            this.simpleButton3.Text = "Fruits";
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.Appearance.Options.UseTextOptions = true;
+            this.simpleButton2.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.simpleButton2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("simpleButton2.BackgroundImage")));
+            this.simpleButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.simpleButton2.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.simpleButton2.Location = new System.Drawing.Point(265, 15);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(205, 200);
+            this.simpleButton2.TabIndex = 1;
+            this.simpleButton2.Text = "Drinks";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.Appearance.Options.UseTextOptions = true;
+            this.simpleButton1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.simpleButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("simpleButton1.BackgroundImage")));
+            this.simpleButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.simpleButton1.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.simpleButton1.Location = new System.Drawing.Point(15, 15);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(205, 200);
+            this.simpleButton1.TabIndex = 0;
+            this.simpleButton1.Text = "Bread";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // mainPage
             // 

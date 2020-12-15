@@ -215,14 +215,12 @@ namespace StokOtomasyonu
         {
 
             SimpleButton simpleButton = new SimpleButton();
-            simpleButton.Text = "xxxxx";
-            simpleButton.ImageIndex = 0;
-            using (var graphics = simpleButton.CreateGraphics())
-                simpleButton.Size = simpleButton.CalcBestSize();
-               // simpleButton.Size = simpleButton.CalcBestFit(graphics);
-            simpleButton.Location = new Point(600, 600);
+            simpleButton.Text = "new category";
+            //simpleButton.ImageIndex = 0;
+            simpleButton.Height = 200;
+            simpleButton.Width = 205;
+            simpleButton.Location = new Point(263, 511);
             simpleButton.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
-            
             bottomPanel.Controls.Add(simpleButton);
         }
     }

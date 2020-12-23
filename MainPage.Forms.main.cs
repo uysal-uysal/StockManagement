@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-
+using MySql.Data.MySqlClient;
 
 namespace StokOtomasyonu
 {
@@ -18,19 +19,110 @@ namespace StokOtomasyonu
         {
             InitializeComponent();  
         }
-        
-        private void Form3_Load(object sender, EventArgs e)
+
+
+        private void mainPage_Load(object sender, EventArgs e)
         {
-            
+            addStr.count();
+
+            Button[] buttons = new Button[4];
+            buttons[0] = stockroomBtn1;
+            buttons[1] = stockroomBtn2;
+            buttons[2] = stockroomBtn3;
+            buttons[3] = stockroomBtn4;
+            for (int i = 0; i < addStr.countStockroom; i++)
+            {
+                buttons[i].Visible = true;
+                buttons[i].Text = setName(i+1);
+            }
         }
 
-        public static string productType;
-        public static bool stt = false;//eklenecek kullanıcı admin mi, common mı? stt-false --> common
 
-        private void adminToolStripMenuItem_Click(object sender, EventArgs e)//admin ekleme
+        DB database = new DB();
+        loginPage loginpage = new loginPage();
+        addStr addStr = new addStr();
+        deletePrd deletePrd;
+        deleteUser deleteuser;
+
+
+        public int value;
+        public static bool stt = false;//new user is admin? stt-false -- > common
+        public static string store;
+        public static string productType;
+
+      
+        private void stockroomBtn1_Click(object sender, EventArgs e)
+        {
+            store= "1";
+            panel2.Visible = true;
+            productTable.DataSource = null;
+            timer.Enabled = true;
+        }
+
+
+        private void stockroomBtn2_Click(object sender, EventArgs e)
+        {
+            store = "2";
+            panel2.Visible = true;
+            productTable.DataSource = null;
+            timer.Enabled = true;
+        }
+
+
+        private void stockroomBtn3_Click(object sender, EventArgs e)
+        {
+            store = "3";
+            panel2.Visible = true;
+            productTable.DataSource = null;
+            timer.Enabled = true;
+        }
+
+
+        private void stockroomBtn4_Click(object sender, EventArgs e)
+        {
+            store = "4";
+            panel2.Visible = true;
+            productTable.DataSource = null;
+            timer.Enabled = true;
+        }
+
+
+        private void addStockroom_Click(object sender, EventArgs e)
+        {
+            addStr addStocroom = new addStr();
+            addStocroom.Show();
+        }
+
+
+        public void refreshBtn_Click(object sender, EventArgs e)
+        {
+            mainPage_Load(null, EventArgs.Empty);
+        }
+
+
+        public string setName(int id)
+        {
+            string query = $"SELECT name FROM stockroom WHERE id={id}";
+            MySqlDataReader reader = database.Reader(query);
+            string name = "";
+            while (reader.Read())
             {
-            loginPage lp = new loginPage();
-            if (lp.IsAdmin())//giriş yapmış olan kullanıcı admin mi?
+                name = reader[0].ToString();
+            }
+            return name;
+        }
+
+
+        private void newUser_Click(object sender, EventArgs e)
+        {
+            addAdmin.Visible = true;
+            addCommon.Visible = true;
+        }
+
+
+        private void addAdmin_Click(object sender, EventArgs e)
+        {
+            if (loginpage.IsAdmin())
             {
                 stt = true;
                 regPage register = new regPage();
@@ -42,31 +134,23 @@ namespace StokOtomasyonu
             }
         }
 
-        private void commonToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void addCommon_Click(object sender, EventArgs e)
         {
-            stt = false;//eklenecek kullanıcı admin değil
+            stt = false;//new user -- > common
             regPage register = new regPage();
             register.Show();
         }
 
-        deleteUser deleteuser;
-        private void productRegistrationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            loginPage login = new loginPage();
 
-            if (login.IsAdmin())
+        private void delUser_Click(object sender, EventArgs e)
+        {
+            if (loginpage.IsAdmin())
             {
                 if (deleteuser == null || deleteuser.IsDisposed)
                 {
                     deleteuser = new deleteUser();
-                    if (login.IsAdmin()) //giriş yapmış olan kullanıcı admin mi?
-                    {
-                        deleteuser.Show();
-                    }
-                    else
-                    {
-                        MessageBox.Show("only admins can delete admin!");
-                    }
+                    deleteuser.Show();
                 }
             }
             else
@@ -74,154 +158,213 @@ namespace StokOtomasyonu
                 MessageBox.Show("you cant delete any user!");
             }
         }
+        
 
-        private void main_FormClosing_1(object sender, FormClosingEventArgs e)
+        private void category_Click(object sender, EventArgs e)
         {
-            DialogResult x = MessageBox.Show("do you want to exit", "are you sure?", MessageBoxButtons.YesNo);
-            if (x == DialogResult.Yes)
+            category category = new category();
+            category.Show();
+        }
+
+
+        private void addProduct_Click(object sender, EventArgs e)
+        {
+            addPrd addProduct = new addPrd();
+            addProduct.Show();
+        }
+
+
+        private void deleteProduct_Click(object sender, EventArgs e)
+        {
+            if (loginpage.IsAdmin())
             {
-                Environment.Exit(0); 
+                if (deletePrd == null || deletePrd.IsDisposed)
+                {
+                    deletePrd = new deletePrd();
+                    deletePrd.Show();
+                }
             }
-            else if (x == DialogResult.No)
+            else
             {
-                e.Cancel = true; 
+                MessageBox.Show("you cant delete any product!");
             }
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void categoryList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DialogResult x = MessageBox.Show("do you want to exit", "are you sure?", MessageBoxButtons.YesNo);
+            productType = categoryList.SelectedItem.ToString();
+            addProduct.Visible = true;
+            deleteProduct.Visible = true;
+            productTable.Visible = true;
+            increase.Visible = true;
+            reduce.Visible = true;
+            prdValue.Visible = true;
+            productTable.DataSource = database.ListProducts(mainPage.productType, mainPage.store).Tables[0];
+        }
+
+
+        private void prdValue_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                value = Int32.Parse(prdValue.Text);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+        //only type number at increase/reduce textbox
+        private void prdValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+
+        private void increase_Click(object sender, EventArgs e)
+        {
+            //productTable.SelectedRows[0].Cells[0].Value.ToString() --> Selected rows stock
+            string query = $"UPDATE {mainPage.productType} SET stock = stock + '{value}' " +
+                           $"WHERE id= '{productTable.SelectedRows[0].Cells[0].Value.ToString()}' AND warehouse='{mainPage.store}'";
+
+            checkCapacity(int.Parse(store));
+            checkCurrentCapacity(int.Parse(store));
+
+            try
+            {
+                if (mainPage.currentCapacity + value <= mainPage.totalCapacity)
+                {
+                    database.ExecuteQuery(query);
+                }
+                else
+                {
+                    MessageBox.Show("Not enough capacity!");
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
+            }
+            productTable.DataSource = database.ListProducts(mainPage.productType, mainPage.store).Tables[0];
+        }
+
+
+        private void reduce_Click(object sender, EventArgs e)
+        {
+            string query = $"UPDATE {mainPage.productType} SET stock = stock - '{value}' " +
+                           $"WHERE id= '{productTable.SelectedRows[0].Cells[0].Value.ToString()}'AND warehouse='{mainPage.store}'";
+
+            try
+            {
+                if (Int32.Parse(productTable.SelectedRows[0].Cells[2].Value.ToString()) > 0 && value <= Int32.Parse(productTable.SelectedRows[0].Cells[2].Value.ToString()))
+                {
+                    database.ExecuteQuery(query);
+                }
+                else
+                {
+                    MessageBox.Show("Stock cant be less than 0!");
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
+            }
+           
+            productTable.DataSource = database.ListProducts(mainPage.productType, mainPage.store).Tables[0];
+        }
+
+
+        //timer for slide effect 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (this.HorizontalScroll.Value >= 1222)
+            {
+                this.timer.Enabled = false;
+            }
+            else
+            {
+                int x = this.HorizontalScroll.Value + this.HorizontalScroll.SmallChange * 6;
+                this.AutoScrollPosition = new Point(x, 0);
+            }
+        }
+
+
+        private void exit_Click(object sender, EventArgs e)
+        {
+            DialogResult x = MessageBox.Show("Do you want to exit", "Are you sure?", MessageBoxButtons.YesNo);
             if (x == DialogResult.Yes)
             {
                 Environment.Exit(0);
             }
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            products urunler = new products();
-            productType = "bread";
-            urunler.Show();
-        }
 
-        private void simpleButton2_Click(object sender, EventArgs e)
+        private void main_FormClosing_1(object sender, FormClosingEventArgs e)
         {
-            products urunler = new products();
-            productType = "drinks"; 
-            urunler.Show();
-        }
-
-        private void simpleButton3_Click(object sender, EventArgs e)
-        {
-            products urunler = new products();
-            productType = "fruits";
-            urunler.Show();
-        }
-
-        private void simpleButton4_Click(object sender, EventArgs e)
-        {
-            products urunler = new products();
-            productType = "vegetables";
-            urunler.Show();
-        }
-
-        private void simpleButton5_Click(object sender, EventArgs e)
-        {
-            products urunler = new products();
-            productType = "menswear";
-            urunler.Show();
-        }
-
-        private void simpleButton6_Click(object sender, EventArgs e)
-        {
-            products urunler = new products();
-            productType = "womenswear";
-            urunler.Show();
-        }
-
-
-        deletePrd deletePrd;
-        private void breadToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (deletePrd == null || deletePrd.IsDisposed)
+            DialogResult x = MessageBox.Show("Do you want to exit", "Are you sure?", MessageBoxButtons.YesNo);
+            if (x == DialogResult.Yes)
             {
-                deletePrd = new deletePrd();
-                productType = "bread";
-                deletePrd.Show();
+                Environment.Exit(0);
+            }
+            else if (x == DialogResult.No)
+            {
+                e.Cancel = true;
             }
         }
 
-        private void drinksToolStripMenuItem_Click(object sender, EventArgs e)
+
+        public static int totalCapacity;
+        public void checkCapacity(int stockroom)
         {
-            if (deletePrd == null || deletePrd.IsDisposed)
+            string checkcapacity = $"SELECT capacity FROM stockroom WHERE id={stockroom}";
+            MySqlDataReader reader = database.Reader(checkcapacity);
+
+            try
             {
-                deletePrd = new deletePrd();
-                productType = "drinks";
-                deletePrd.Show();
+                while (reader.Read())
+                {
+                    totalCapacity = int.Parse(reader[0].ToString()); 
+                }
             }
+            catch (Exception err)
+            {
+                MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
+            }
+            database.Disconnect();
         }
 
-        private void fruitsToolStripMenuItem_Click(object sender, EventArgs e)
+
+        public static int currentCapacity = 0;
+        public void checkCurrentCapacity(int stockroom)
         {
-            if (deletePrd == null || deletePrd.IsDisposed)
+            currentCapacity = 0;
+            string[] category = { "bread", "drinks", "fruits", "menswear","womenswear","vegetables","tools" };
+
+            foreach (var item in category)
             {
-                deletePrd = new deletePrd();
-                productType = "fruits";
-                deletePrd.Show();
+                string checkcurrentcapacity = $"SELECT stock FROM {item} WHERE warehouse={stockroom}";
+                MySqlDataReader reader = database.Reader(checkcurrentcapacity);
+
+                try
+                {
+                    while (reader.Read())
+                    {
+                        currentCapacity += int.Parse(reader[0].ToString());
+                    }
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
+                }
             }
-        }
-
-        private void vegetablesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (deletePrd == null || deletePrd.IsDisposed)
-            {
-                deletePrd = new deletePrd();
-                productType = "vegetables";
-                deletePrd.Show();
-            }
-        }
-
-        private void menswearToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (deletePrd == null || deletePrd.IsDisposed)
-            {
-                deletePrd = new deletePrd();
-                productType = "menswear";
-                deletePrd.Show();
-            }
-        }
-
-        private void womenswearToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (deletePrd == null || deletePrd.IsDisposed)
-            {
-                deletePrd = new deletePrd();
-                productType = "womenswear";
-                deletePrd.Show();
-            }
-        }
-
-        private void toolsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (deletePrd == null || deletePrd.IsDisposed)
-            {
-                deletePrd = new deletePrd();
-                productType = "tools";
-                deletePrd.Show();
-            }
-        }
-
-        private void addNewCategoryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            SimpleButton simpleButton = new SimpleButton();
-            simpleButton.Text = "new category";
-            //simpleButton.ImageIndex = 0;
-            simpleButton.Height = 200;
-            simpleButton.Width = 205;
-            simpleButton.Location = new Point(263, 511);
-            simpleButton.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
-            bottomPanel.Controls.Add(simpleButton);
+            database.Disconnect();
         }
     }
 }

@@ -64,17 +64,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB.cs" />
-    <Compile Include="Delete.Forms.deleteUser.cs">
+    <Compile Include="Stockroom.Forms.add.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Delete.Forms.deleteUser.Designer.cs">
-      <DependentUpon>Delete.Forms.deleteUser.cs</DependentUpon>
+    <Compile Include="Stockroom.Forms.add.Designer.cs">
+      <DependentUpon>Stockroom.Forms.add.cs</DependentUpon>
     </Compile>
-    <Compile Include="DeleteForms.deleteProduct.cs">
+    <Compile Include="Product.Forms.category.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DeleteForms.deleteProduct.Designer.cs">
-      <DependentUpon>DeleteForms.deleteProduct.cs</DependentUpon>
+    <Compile Include="Product.Forms.category.Designer.cs">
+      <DependentUpon>Product.Forms.category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User.Forms.delete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User.Forms.delete.Designer.cs">
+      <DependentUpon>User.Forms.delete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Product.Forms.delete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Product.Forms.delete.Designer.cs">
+      <DependentUpon>Product.Forms.delete.cs</DependentUpon>
     </Compile>
     <Compile Include="Product.Forms.add.cs">
       <SubType>Form</SubType>
@@ -82,46 +94,43 @@
     <Compile Include="Product.Forms.add.Designer.cs">
       <DependentUpon>Product.Forms.add.cs</DependentUpon>
     </Compile>
-    <Compile Include="Main.Forms.products.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Main.Forms.products.Designer.cs">
-      <DependentUpon>Main.Forms.products.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainPage.Forms.main.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainPage.Forms.main.Designer.cs">
       <DependentUpon>MainPage.Forms.main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Registration.Forms.register.cs">
+    <Compile Include="User.Forms.register.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Registration.Forms.register.Designer.cs">
-      <DependentUpon>Registration.Forms.register.cs</DependentUpon>
+    <Compile Include="User.Forms.register.Designer.cs">
+      <DependentUpon>User.Forms.register.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.Forms.login.cs">
+    <Compile Include="User.Forms.login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Forms.login.Designer.cs">
-      <DependentUpon>Login.Forms.login.cs</DependentUpon>
+    <Compile Include="User.Forms.login.Designer.cs">
+      <DependentUpon>User.Forms.login.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Delete.Forms.deleteUser.resx">
-      <DependentUpon>Delete.Forms.deleteUser.cs</DependentUpon>
+    <EmbeddedResource Include="Product.Forms.category.resx">
+      <DependentUpon>Product.Forms.category.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DeleteForms.deleteProduct.resx">
-      <DependentUpon>DeleteForms.deleteProduct.cs</DependentUpon>
+    <EmbeddedResource Include="Stockroom.Forms.add.resx">
+      <DependentUpon>Stockroom.Forms.add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User.Forms.delete.resx">
+      <DependentUpon>User.Forms.delete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Product.Forms.delete.resx">
+      <DependentUpon>Product.Forms.delete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Product.Forms.add.resx">
       <DependentUpon>Product.Forms.add.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.Forms.login.resx">
-      <DependentUpon>Login.Forms.login.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Main.Forms.products.resx">
-      <DependentUpon>Main.Forms.products.cs</DependentUpon>
+    <EmbeddedResource Include="User.Forms.login.resx">
+      <DependentUpon>User.Forms.login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainPage.Forms.main.resx">
       <DependentUpon>MainPage.Forms.main.cs</DependentUpon>
@@ -136,8 +145,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Registration.Forms.register.resx">
-      <DependentUpon>Registration.Forms.register.cs</DependentUpon>
+    <EmbeddedResource Include="User.Forms.register.resx">
+      <DependentUpon>User.Forms.register.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -15,22 +15,22 @@ namespace StokOtomasyonu
         public MySqlDataReader Reader(string query)
         {
             Connection();
-
             MySqlCommand command = new MySqlCommand(query, myConnection);
             MySqlDataReader myReader;
             myReader = command.ExecuteReader();
             return myReader;
         }
+
 
         public MySqlDataReader StatusReader(string query)
         {
             Connection();
-
             MySqlCommand command = new MySqlCommand(query, myConnection);
             MySqlDataReader myReader;
             myReader = command.ExecuteReader();
             return myReader;
         }
+
 
         public void Connection()
         {
@@ -38,24 +38,13 @@ namespace StokOtomasyonu
             myConnection.Open();
         }
 
+
         public void Disconnect()
         {
             myConnection.Close();
         }
 
-        public void Add(string query)
-        {
-            Connection();
-            MySqlCommand command = new MySqlCommand(query, myConnection);
-            command.ExecuteReader();
-        }
-
-        public void Delete(string query)
-        {
-            Connection();
-            MySqlCommand command = new MySqlCommand(query, myConnection);
-            command.ExecuteReader();
-        }
+      
         public void ExecuteQuery(string query)
         {
             Connection();
@@ -63,11 +52,23 @@ namespace StokOtomasyonu
             command.ExecuteReader();
         }
 
+
         public DataSet ListDatas(string table)
         {
             Connection();
             string query = $"SELECT * FROM {table}";
             MySqlDataAdapter da = new MySqlDataAdapter(query,myConnection);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            return ds;
+        }
+
+
+        public DataSet ListProducts(string table, string stockroom)
+        {
+            Connection();
+            string query = $"SELECT * FROM {table} WHERE warehouse = {stockroom}";
+            MySqlDataAdapter da = new MySqlDataAdapter(query, myConnection);
             DataSet ds = new DataSet();
             da.Fill(ds);
             return ds;

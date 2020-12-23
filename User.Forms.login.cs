@@ -21,16 +21,19 @@ namespace StokOtomasyonu
             InitializeComponent();
         }
 
+
+        DB database = new DB();
+        public static string username;
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
-          
+            
         }
 
 
-        public static string username;
-        public bool IsAdmin() //giriş yapan kullanıcı admin mi, değil mi?
+        public bool IsAdmin()
         {
-            DB database = new DB();
             string sqlStatusQuery = $"SELECT count(userStt) as kontrol FROM users WHERE username = '{username}' AND userStt = 'admin'";
             MySqlDataReader statusReader = database.StatusReader(sqlStatusQuery);
 
@@ -49,22 +52,22 @@ namespace StokOtomasyonu
             return false;
         }
 
+
         public void logButton_Click(object sender, EventArgs e)
         {
-            DB database = new DB();
+            username = txtUsername.Text;//set to global variable 'username'
 
-            username = txtUsername.Text;
+            string query = $"SELECT count(username) as kontrol FROM users WHERE username = '{txtUsername.Text}' AND userPass = '{txtPass.Text}'";
 
-            string sqlQuery = $"SELECT count(username) as kontrol FROM users WHERE username = '{txtUsername.Text}' AND userPass = '{txtPass.Text}'";
             try
             {
                 if (string.IsNullOrWhiteSpace(txtUsername.Text) == true || string.IsNullOrWhiteSpace(txtPass.Text) == true)
                 {
-                    MessageBox.Show("textfields cannot be null and must not contain spaces", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Textfields cannot be null and must not contain spaces", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    MySqlDataReader reader = database.Reader(sqlQuery);
+                    MySqlDataReader reader = database.Reader(query);
                     while (reader.Read())
                     {
                         if (reader[0].ToString() == "1")
@@ -75,7 +78,7 @@ namespace StokOtomasyonu
                         }
                         else
                         {
-                            MessageBox.Show("user not found");
+                            MessageBox.Show("User not found");
                         }
                     }
                     database.Disconnect();
@@ -87,14 +90,16 @@ namespace StokOtomasyonu
             }
         }
 
+
         private void Form1_Shown(object sender, EventArgs e)
         {
             txtUsername.Focus();
         }
 
-        private void txtUsername_TextChanged(object sender, EventArgs e)
-        {
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

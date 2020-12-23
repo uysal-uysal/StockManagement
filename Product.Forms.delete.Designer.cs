@@ -31,20 +31,23 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(deletePrd));
             this.deleteButton = new System.Windows.Forms.Button();
             this.prdTable = new System.Windows.Forms.DataGridView();
+            this.exitButton = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.prdTable)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // deleteButton
             // 
-            this.deleteButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(238)))), ((int)(((byte)(30)))));
+            this.deleteButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(142)))), ((int)(((byte)(214)))));
             this.deleteButton.FlatAppearance.BorderSize = 0;
             this.deleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.deleteButton.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.deleteButton.Location = new System.Drawing.Point(48, 164);
+            this.deleteButton.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.deleteButton.Location = new System.Drawing.Point(160, 292);
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(126, 33);
+            this.deleteButton.Size = new System.Drawing.Size(100, 35);
             this.deleteButton.TabIndex = 0;
-            this.deleteButton.Text = "DELETE";
+            this.deleteButton.Text = "Delete";
             this.deleteButton.UseVisualStyleBackColor = false;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
@@ -58,12 +61,35 @@
             this.prdTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.prdTable.BackgroundColor = System.Drawing.SystemColors.Control;
             this.prdTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.prdTable.Location = new System.Drawing.Point(214, 23);
+            this.prdTable.Location = new System.Drawing.Point(23, 51);
             this.prdTable.Name = "prdTable";
             this.prdTable.ReadOnly = true;
             this.prdTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.prdTable.Size = new System.Drawing.Size(434, 325);
+            this.prdTable.Size = new System.Drawing.Size(375, 235);
             this.prdTable.TabIndex = 1;
+            // 
+            // exitButton
+            // 
+            this.exitButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("exitButton.BackgroundImage")));
+            this.exitButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exitButton.Location = new System.Drawing.Point(376, 10);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(35, 35);
+            this.exitButton.TabIndex = 2;
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panel1.Controls.Add(this.deleteButton);
+            this.panel1.Controls.Add(this.exitButton);
+            this.panel1.Controls.Add(this.prdTable);
+            this.panel1.Location = new System.Drawing.Point(2, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(421, 341);
+            this.panel1.TabIndex = 3;
             // 
             // deletePrd
             // 
@@ -71,16 +97,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackColor = System.Drawing.SystemColors.WindowText;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(671, 381);
-            this.Controls.Add(this.prdTable);
-            this.Controls.Add(this.deleteButton);
+            this.ClientSize = new System.Drawing.Size(425, 345);
+            this.ControlBox = false;
+            this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
             this.Name = "deletePrd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Delete Product";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.prdTable)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -89,5 +118,7 @@
 
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.DataGridView prdTable;
+        private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.Panel panel1;
     }
 }

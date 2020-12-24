@@ -17,7 +17,7 @@ namespace StokOtomasyonu
     {
         public mainPage()
         {
-            InitializeComponent();  
+            InitializeComponent();
         }
 
 
@@ -30,11 +30,13 @@ namespace StokOtomasyonu
             buttons[1] = stockroomBtn2;
             buttons[2] = stockroomBtn3;
             buttons[3] = stockroomBtn4;
+
             for (int i = 0; i < addStr.countStockroom; i++)
             {
                 buttons[i].Visible = true;
-                buttons[i].Text = setName(i+1);
+                buttons[i].Text = setName(i + 1);
             }
+
         }
 
 
@@ -50,13 +52,15 @@ namespace StokOtomasyonu
         public static string store;
         public static string productType;
 
-      
+
         private void stockroomBtn1_Click(object sender, EventArgs e)
         {
-            store= "1";
+            store = "1";
             panel2.Visible = true;
             productTable.DataSource = null;
             timer.Enabled = true;
+            deleteStockroom.Visible = true;
+            updateCapacity();
         }
 
 
@@ -66,6 +70,8 @@ namespace StokOtomasyonu
             panel2.Visible = true;
             productTable.DataSource = null;
             timer.Enabled = true;
+            deleteStockroom.Visible = true;
+            updateCapacity();
         }
 
 
@@ -75,6 +81,8 @@ namespace StokOtomasyonu
             panel2.Visible = true;
             productTable.DataSource = null;
             timer.Enabled = true;
+            deleteStockroom.Visible = true;
+            updateCapacity();
         }
 
 
@@ -84,14 +92,111 @@ namespace StokOtomasyonu
             panel2.Visible = true;
             productTable.DataSource = null;
             timer.Enabled = true;
+            deleteStockroom.Visible = true;
+            updateCapacity();
         }
 
 
         private void addStockroom_Click(object sender, EventArgs e)
         {
-            addStr addStocroom = new addStr();
-            addStocroom.Show();
+            if (loginpage.IsAdmin())
+            {
+                addStr addStocroom = new addStr();
+                addStocroom.Show();
+            }
+            else
+            {
+                MessageBox.Show("You cant add new Stockroom!");
+            }
         }
+
+
+        private void deleteStockroom_Click(object sender, EventArgs e)
+        {
+            //refresh combobox
+            cmbDeleteStockroom.DataSource = null;
+            cmbDeleteStockroom.Items.Clear();
+            this.AutoScrollPosition = new Point(0, 0);
+
+
+            if (addStr.countStockroom >= 1)
+            {
+                if (loginpage.IsAdmin())
+                {
+                    for (int i = 0; i < addStr.countStockroom; i++)
+                    {
+                        cmbDeleteStockroom.Items.Add(setName(i + 1).ToString());
+                    }
+                    cmbDeleteStockroom.SelectedIndex = 0;
+                    pnlConfirmDelete.Visible = true;
+                    label5.Text = " 'DELETE-DELETE " + cmbDeleteStockroom.SelectedItem.ToString() + "'";
+                }
+                else
+                {
+                    MessageBox.Show("You cant delete Stockroom!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Couldnt find any Stockroom!");
+            }
+        }
+
+
+        private void cmbDeleteStockroom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            label5.Text = "DELETE-DELETE " + cmbDeleteStockroom.SelectedItem.ToString();
+        }
+
+
+        private void btnDeleteStockroom_Click(object sender, EventArgs e)
+        {
+            string[] category = { "bread", "drinks", "fruits", "menswear", "womenswear", "vegetables", "tools" };
+
+
+            if (txtConfirm.Text.Equals(label5.Text))
+            {
+                foreach (var item in category)
+                {
+                    string deletePrd = $"DELETE FROM {item} WHERE warehouse = {store}";
+                    string deleteStr = $"DELETE FROM stockroom WHERE name = '{cmbDeleteStockroom.SelectedItem.ToString()}'";
+
+                    Button[] buttons = new Button[4];
+                    buttons[0] = stockroomBtn1;
+                    buttons[1] = stockroomBtn2;
+                    buttons[2] = stockroomBtn3;
+                    buttons[3] = stockroomBtn4;
+
+                    try
+                    {
+                        database.ExecuteQuery(deletePrd);
+                        database.ExecuteQuery(deleteStr);
+                        pnlConfirmDelete.Visible=false;
+                        panel2.Visible = false;
+                    }
+                    catch (Exception err)
+                    {
+                        MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
+                    }
+
+                    for (int i = 0; i < addStr.countStockroom; i++)
+                    {
+                        if (buttons[i].Text.ToString().Equals(cmbDeleteStockroom.SelectedItem.ToString()))
+                        {
+                            buttons[i].Visible = false;
+
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Wrong!");
+            }
+        }
+
+
+       
 
 
         public void refreshBtn_Click(object sender, EventArgs e)
@@ -200,6 +305,7 @@ namespace StokOtomasyonu
             increase.Visible = true;
             reduce.Visible = true;
             prdValue.Visible = true;
+            refreshTable.Visible = true;
             productTable.DataSource = database.ListProducts(mainPage.productType, mainPage.store).Tables[0];
         }
 
@@ -210,10 +316,9 @@ namespace StokOtomasyonu
             {
                 value = Int32.Parse(prdValue.Text);
             }
-            catch (Exception)
+            catch (Exception err)
             {
-
-                throw;
+                MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
             }
         }
 
@@ -239,9 +344,10 @@ namespace StokOtomasyonu
 
             try
             {
-                if (mainPage.currentCapacity + value <= mainPage.totalCapacity)
+                if (currentCapacity + value <= totalCapacity)
                 {
                     database.ExecuteQuery(query);
+                    updateCapacity();
                 }
                 else
                 {
@@ -266,6 +372,7 @@ namespace StokOtomasyonu
                 if (Int32.Parse(productTable.SelectedRows[0].Cells[2].Value.ToString()) > 0 && value <= Int32.Parse(productTable.SelectedRows[0].Cells[2].Value.ToString()))
                 {
                     database.ExecuteQuery(query);
+                    updateCapacity();
                 }
                 else
                 {
@@ -365,6 +472,19 @@ namespace StokOtomasyonu
                 }
             }
             database.Disconnect();
+        }
+
+        public void updateCapacity()
+        {
+            checkCapacity(int.Parse(store));
+            checkCurrentCapacity(int.Parse(store));
+            lblCapacity.Text = currentCapacity.ToString() + " / " + totalCapacity.ToString();
+        }
+
+        private void refreshTable_Click(object sender, EventArgs e)
+        {
+            productTable.DataSource = database.ListProducts(mainPage.productType, mainPage.store).Tables[0];
+            updateCapacity();
         }
     }
 }

@@ -47,7 +47,7 @@
             this.label1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(47, 159);
+            this.label1.Location = new System.Drawing.Point(47, 149);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 16);
             this.label1.TabIndex = 0;
@@ -60,7 +60,7 @@
             this.label2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(47, 217);
+            this.label2.Location = new System.Drawing.Point(47, 207);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 16);
             this.label2.TabIndex = 1;
@@ -73,7 +73,7 @@
             this.label3.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label3.Location = new System.Drawing.Point(47, 276);
+            this.label3.Location = new System.Drawing.Point(47, 266);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 16);
             this.label3.TabIndex = 2;
@@ -84,7 +84,7 @@
             // 
             this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtId.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtId.Location = new System.Drawing.Point(50, 178);
+            this.txtId.Location = new System.Drawing.Point(50, 168);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(247, 23);
             this.txtId.TabIndex = 3;
@@ -93,7 +93,7 @@
             // 
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtName.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtName.Location = new System.Drawing.Point(50, 236);
+            this.txtName.Location = new System.Drawing.Point(50, 226);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(247, 23);
             this.txtName.TabIndex = 4;
@@ -102,7 +102,7 @@
             // 
             this.txtStock.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtStock.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtStock.Location = new System.Drawing.Point(50, 295);
+            this.txtStock.Location = new System.Drawing.Point(50, 285);
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(247, 23);
             this.txtStock.TabIndex = 5;

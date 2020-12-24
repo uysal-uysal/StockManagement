@@ -54,7 +54,7 @@ namespace StokOtomasyonu
                     }
                     else
                     {
-                        MessageBox.Show("This Stockroom already exist or you have reached max Stockroom(4)!");
+                        MessageBox.Show("This Stockroom already exist or you have reached max Stockroom (4)!");
                     }
                 }
             }

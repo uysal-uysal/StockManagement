@@ -33,6 +33,8 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblCapacity = new System.Windows.Forms.Label();
             this.prdValue = new System.Windows.Forms.TextBox();
             this.reduce = new System.Windows.Forms.Button();
             this.increase = new System.Windows.Forms.Button();
@@ -50,22 +52,30 @@
             this.newUser = new System.Windows.Forms.Button();
             this.hdrUserOp = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.refreshBtn = new System.Windows.Forms.Button();
+            this.hdrStockroomOp = new System.Windows.Forms.Button();
+            this.addStockroom = new System.Windows.Forms.Button();
+            this.refreshStockroom = new System.Windows.Forms.Button();
             this.stockroomBtn4 = new System.Windows.Forms.Button();
             this.stockroomBtn3 = new System.Windows.Forms.Button();
             this.hdrStockroom = new System.Windows.Forms.Button();
             this.stockroomBtn1 = new System.Windows.Forms.Button();
             this.stockroomBtn2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.hdrStockroomOp = new System.Windows.Forms.Button();
-            this.addStockroom = new System.Windows.Forms.Button();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.deleteStockroom = new System.Windows.Forms.Button();
+            this.cmbDeleteStockroom = new System.Windows.Forms.ComboBox();
+            this.btnDeleteStockroom = new System.Windows.Forms.Button();
+            this.pnlConfirmDelete = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtConfirm = new System.Windows.Forms.TextBox();
+            this.refreshTable = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productTable)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pnlConfirmDelete.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -77,6 +87,9 @@
             // 
             this.panel2.AutoScroll = true;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.refreshTable);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.lblCapacity);
             this.panel2.Controls.Add(this.prdValue);
             this.panel2.Controls.Add(this.reduce);
             this.panel2.Controls.Add(this.increase);
@@ -93,10 +106,30 @@
             this.panel2.TabIndex = 5;
             this.panel2.Visible = false;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label2.Location = new System.Drawing.Point(259, 266);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(98, 25);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "Capacity:";
+            // 
+            // lblCapacity
+            // 
+            this.lblCapacity.AutoSize = true;
+            this.lblCapacity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblCapacity.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblCapacity.Location = new System.Drawing.Point(363, 268);
+            this.lblCapacity.Name = "lblCapacity";
+            this.lblCapacity.Size = new System.Drawing.Size(2, 27);
+            this.lblCapacity.TabIndex = 22;
+            // 
             // prdValue
             // 
             this.prdValue.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.prdValue.Location = new System.Drawing.Point(19, 511);
+            this.prdValue.Location = new System.Drawing.Point(19, 556);
             this.prdValue.Name = "prdValue";
             this.prdValue.Size = new System.Drawing.Size(140, 23);
             this.prdValue.TabIndex = 20;
@@ -111,7 +144,7 @@
             this.reduce.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.reduce.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.reduce.ForeColor = System.Drawing.SystemColors.Control;
-            this.reduce.Location = new System.Drawing.Point(290, 502);
+            this.reduce.Location = new System.Drawing.Point(290, 547);
             this.reduce.Name = "reduce";
             this.reduce.Size = new System.Drawing.Size(100, 40);
             this.reduce.TabIndex = 19;
@@ -127,7 +160,7 @@
             this.increase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.increase.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.increase.ForeColor = System.Drawing.SystemColors.Control;
-            this.increase.Location = new System.Drawing.Point(184, 502);
+            this.increase.Location = new System.Drawing.Point(184, 547);
             this.increase.Name = "increase";
             this.increase.Size = new System.Drawing.Size(100, 40);
             this.increase.TabIndex = 18;
@@ -145,7 +178,7 @@
             this.productTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.productTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.productTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.productTable.Location = new System.Drawing.Point(19, 306);
+            this.productTable.Location = new System.Drawing.Point(19, 351);
             this.productTable.Name = "productTable";
             this.productTable.ReadOnly = true;
             this.productTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -170,7 +203,7 @@
             this.addProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addProduct.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.addProduct.ForeColor = System.Drawing.SystemColors.Control;
-            this.addProduct.Location = new System.Drawing.Point(19, 171);
+            this.addProduct.Location = new System.Drawing.Point(19, 187);
             this.addProduct.Name = "addProduct";
             this.addProduct.Size = new System.Drawing.Size(225, 40);
             this.addProduct.TabIndex = 15;
@@ -205,7 +238,7 @@
             this.category.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.category.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.category.ForeColor = System.Drawing.SystemColors.Control;
-            this.category.Location = new System.Drawing.Point(264, 95);
+            this.category.Location = new System.Drawing.Point(264, 94);
             this.category.Name = "category";
             this.category.Size = new System.Drawing.Size(225, 40);
             this.category.TabIndex = 13;
@@ -220,7 +253,7 @@
             this.deleteProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteProduct.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.deleteProduct.ForeColor = System.Drawing.SystemColors.Control;
-            this.deleteProduct.Location = new System.Drawing.Point(19, 238);
+            this.deleteProduct.Location = new System.Drawing.Point(19, 260);
             this.deleteProduct.Name = "deleteProduct";
             this.deleteProduct.Size = new System.Drawing.Size(225, 40);
             this.deleteProduct.TabIndex = 12;
@@ -337,7 +370,8 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.pictureBox1);
+            this.panel3.Controls.Add(this.pnlConfirmDelete);
+            this.panel3.Controls.Add(this.deleteStockroom);
             this.panel3.Controls.Add(this.hdrUserOp);
             this.panel3.Controls.Add(this.hdrStockroomOp);
             this.panel3.Controls.Add(this.addCommon);
@@ -351,20 +385,51 @@
             this.panel3.Size = new System.Drawing.Size(500, 663);
             this.panel3.TabIndex = 13;
             // 
-            // refreshBtn
+            // hdrStockroomOp
             // 
-            this.refreshBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(188)))), ((int)(((byte)(125)))));
-            this.refreshBtn.FlatAppearance.BorderSize = 0;
-            this.refreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.refreshBtn.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.refreshBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.refreshBtn.Location = new System.Drawing.Point(299, 243);
-            this.refreshBtn.Name = "refreshBtn";
-            this.refreshBtn.Size = new System.Drawing.Size(100, 33);
-            this.refreshBtn.TabIndex = 13;
-            this.refreshBtn.Text = "Refresh";
-            this.refreshBtn.UseVisualStyleBackColor = false;
-            this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
+            this.hdrStockroomOp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(86)))), ((int)(((byte)(86)))));
+            this.hdrStockroomOp.FlatAppearance.BorderSize = 0;
+            this.hdrStockroomOp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.hdrStockroomOp.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.hdrStockroomOp.ForeColor = System.Drawing.SystemColors.Control;
+            this.hdrStockroomOp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.hdrStockroomOp.Location = new System.Drawing.Point(15, 11);
+            this.hdrStockroomOp.Name = "hdrStockroomOp";
+            this.hdrStockroomOp.Size = new System.Drawing.Size(470, 60);
+            this.hdrStockroomOp.TabIndex = 15;
+            this.hdrStockroomOp.Text = "Stockroom Operations";
+            this.hdrStockroomOp.UseVisualStyleBackColor = false;
+            // 
+            // addStockroom
+            // 
+            this.addStockroom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(188)))), ((int)(((byte)(125)))));
+            this.addStockroom.FlatAppearance.BorderSize = 0;
+            this.addStockroom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addStockroom.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.addStockroom.ForeColor = System.Drawing.SystemColors.Control;
+            this.addStockroom.Location = new System.Drawing.Point(15, 92);
+            this.addStockroom.Name = "addStockroom";
+            this.addStockroom.Size = new System.Drawing.Size(225, 40);
+            this.addStockroom.TabIndex = 21;
+            this.addStockroom.Text = "Add New";
+            this.addStockroom.UseVisualStyleBackColor = false;
+            this.addStockroom.Click += new System.EventHandler(this.addStockroom_Click);
+            // 
+            // refreshStockroom
+            // 
+            this.refreshStockroom.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.refreshStockroom.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("refreshStockroom.BackgroundImage")));
+            this.refreshStockroom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.refreshStockroom.FlatAppearance.BorderSize = 0;
+            this.refreshStockroom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.refreshStockroom.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.refreshStockroom.ForeColor = System.Drawing.SystemColors.Control;
+            this.refreshStockroom.Location = new System.Drawing.Point(585, 46);
+            this.refreshStockroom.Name = "refreshStockroom";
+            this.refreshStockroom.Size = new System.Drawing.Size(25, 25);
+            this.refreshStockroom.TabIndex = 13;
+            this.refreshStockroom.UseVisualStyleBackColor = false;
+            this.refreshStockroom.Click += new System.EventHandler(this.refreshBtn_Click);
             // 
             // stockroomBtn4
             // 
@@ -447,7 +512,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.refreshBtn);
+            this.panel1.Controls.Add(this.refreshStockroom);
             this.panel1.Controls.Add(this.stockroomBtn4);
             this.panel1.Controls.Add(this.stockroomBtn3);
             this.panel1.Controls.Add(this.hdrStockroom);
@@ -458,51 +523,124 @@
             this.panel1.Size = new System.Drawing.Size(688, 663);
             this.panel1.TabIndex = 14;
             // 
-            // hdrStockroomOp
-            // 
-            this.hdrStockroomOp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(86)))), ((int)(((byte)(86)))));
-            this.hdrStockroomOp.FlatAppearance.BorderSize = 0;
-            this.hdrStockroomOp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.hdrStockroomOp.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.hdrStockroomOp.ForeColor = System.Drawing.SystemColors.Control;
-            this.hdrStockroomOp.Location = new System.Drawing.Point(15, 11);
-            this.hdrStockroomOp.Name = "hdrStockroomOp";
-            this.hdrStockroomOp.Size = new System.Drawing.Size(470, 60);
-            this.hdrStockroomOp.TabIndex = 15;
-            this.hdrStockroomOp.Text = "Stockroom Operations";
-            this.hdrStockroomOp.UseVisualStyleBackColor = false;
-            // 
-            // addStockroom
-            // 
-            this.addStockroom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(188)))), ((int)(((byte)(125)))));
-            this.addStockroom.FlatAppearance.BorderSize = 0;
-            this.addStockroom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addStockroom.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.addStockroom.ForeColor = System.Drawing.SystemColors.Control;
-            this.addStockroom.Location = new System.Drawing.Point(15, 92);
-            this.addStockroom.Name = "addStockroom";
-            this.addStockroom.Size = new System.Drawing.Size(225, 40);
-            this.addStockroom.TabIndex = 21;
-            this.addStockroom.Text = "New Warehouse";
-            this.addStockroom.UseVisualStyleBackColor = false;
-            this.addStockroom.Click += new System.EventHandler(this.addStockroom_Click);
-            // 
             // timer
             // 
             this.timer.Interval = 15;
             this.timer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // pictureBox1
+            // deleteStockroom
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(86)))), ((int)(((byte)(86)))));
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(15, 11);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(70, 60);
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
+            this.deleteStockroom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(188)))), ((int)(((byte)(125)))));
+            this.deleteStockroom.FlatAppearance.BorderSize = 0;
+            this.deleteStockroom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deleteStockroom.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.deleteStockroom.ForeColor = System.Drawing.SystemColors.Control;
+            this.deleteStockroom.Location = new System.Drawing.Point(260, 92);
+            this.deleteStockroom.Name = "deleteStockroom";
+            this.deleteStockroom.Size = new System.Drawing.Size(225, 40);
+            this.deleteStockroom.TabIndex = 22;
+            this.deleteStockroom.Text = "Delete";
+            this.deleteStockroom.UseVisualStyleBackColor = false;
+            this.deleteStockroom.Visible = false;
+            this.deleteStockroom.Click += new System.EventHandler(this.deleteStockroom_Click);
+            // 
+            // cmbDeleteStockroom
+            // 
+            this.cmbDeleteStockroom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDeleteStockroom.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.cmbDeleteStockroom.FormattingEnabled = true;
+            this.cmbDeleteStockroom.Location = new System.Drawing.Point(3, 21);
+            this.cmbDeleteStockroom.Name = "cmbDeleteStockroom";
+            this.cmbDeleteStockroom.Size = new System.Drawing.Size(217, 24);
+            this.cmbDeleteStockroom.TabIndex = 23;
+            this.cmbDeleteStockroom.SelectedIndexChanged += new System.EventHandler(this.cmbDeleteStockroom_SelectedIndexChanged);
+            // 
+            // btnDeleteStockroom
+            // 
+            this.btnDeleteStockroom.BackColor = System.Drawing.Color.Red;
+            this.btnDeleteStockroom.FlatAppearance.BorderSize = 0;
+            this.btnDeleteStockroom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteStockroom.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnDeleteStockroom.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnDeleteStockroom.Location = new System.Drawing.Point(60, 223);
+            this.btnDeleteStockroom.Name = "btnDeleteStockroom";
+            this.btnDeleteStockroom.Size = new System.Drawing.Size(105, 25);
+            this.btnDeleteStockroom.TabIndex = 24;
+            this.btnDeleteStockroom.Text = "DELETE";
+            this.btnDeleteStockroom.UseVisualStyleBackColor = false;
+            this.btnDeleteStockroom.Click += new System.EventHandler(this.btnDeleteStockroom_Click);
+            // 
+            // pnlConfirmDelete
+            // 
+            this.pnlConfirmDelete.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlConfirmDelete.Controls.Add(this.txtConfirm);
+            this.pnlConfirmDelete.Controls.Add(this.label5);
+            this.pnlConfirmDelete.Controls.Add(this.label4);
+            this.pnlConfirmDelete.Controls.Add(this.label3);
+            this.pnlConfirmDelete.Controls.Add(this.cmbDeleteStockroom);
+            this.pnlConfirmDelete.Controls.Add(this.btnDeleteStockroom);
+            this.pnlConfirmDelete.Location = new System.Drawing.Point(260, 138);
+            this.pnlConfirmDelete.Name = "pnlConfirmDelete";
+            this.pnlConfirmDelete.Size = new System.Drawing.Size(225, 277);
+            this.pnlConfirmDelete.TabIndex = 25;
+            this.pnlConfirmDelete.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label3.Location = new System.Drawing.Point(-4, 94);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(228, 16);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "Are you sure you want to delete?";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label4.Location = new System.Drawing.Point(66, 121);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(90, 16);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "Please Type:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label5.Location = new System.Drawing.Point(47, 157);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(46, 16);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "label5";
+            // 
+            // txtConfirm
+            // 
+            this.txtConfirm.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.txtConfirm.Location = new System.Drawing.Point(40, 183);
+            this.txtConfirm.Name = "txtConfirm";
+            this.txtConfirm.Size = new System.Drawing.Size(145, 23);
+            this.txtConfirm.TabIndex = 28;
+            // 
+            // refreshTable
+            // 
+            this.refreshTable.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.refreshTable.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("refreshTable.BackgroundImage")));
+            this.refreshTable.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.refreshTable.FlatAppearance.BorderSize = 0;
+            this.refreshTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.refreshTable.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.refreshTable.ForeColor = System.Drawing.SystemColors.Control;
+            this.refreshTable.Location = new System.Drawing.Point(19, 322);
+            this.refreshTable.Name = "refreshTable";
+            this.refreshTable.Size = new System.Drawing.Size(25, 25);
+            this.refreshTable.TabIndex = 24;
+            this.refreshTable.UseVisualStyleBackColor = false;
+            this.refreshTable.Visible = false;
+            this.refreshTable.Click += new System.EventHandler(this.refreshTable_Click);
             // 
             // mainPage
             // 
@@ -525,7 +663,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.productTable)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.pnlConfirmDelete.ResumeLayout(false);
+            this.pnlConfirmDelete.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -560,7 +699,17 @@
         private System.Windows.Forms.Button addStockroom;
         private System.Windows.Forms.Button stockroomBtn4;
         private System.Windows.Forms.Button stockroomBtn3;
-        private System.Windows.Forms.Button refreshBtn;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button refreshStockroom;
+        private System.Windows.Forms.Label lblCapacity;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button deleteStockroom;
+        private System.Windows.Forms.Button btnDeleteStockroom;
+        private System.Windows.Forms.ComboBox cmbDeleteStockroom;
+        private System.Windows.Forms.Panel pnlConfirmDelete;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtConfirm;
+        private System.Windows.Forms.Button refreshTable;
     }
 }

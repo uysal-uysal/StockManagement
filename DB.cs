@@ -11,7 +11,20 @@ namespace StokOtomasyonu
     class DB
     {
         MySqlConnection myConnection;
-     
+
+        public void Connection()
+        {
+            myConnection = new MySqlConnection("SERVER = localhost; ; DATABASE = otomasyon; UID = root; PWD = uysal");
+            myConnection.Open();
+        }
+
+
+        public void Disconnect()
+        {
+            myConnection.Close();
+        }
+
+
         public MySqlDataReader Reader(string query)
         {
             Connection();
@@ -29,19 +42,6 @@ namespace StokOtomasyonu
             MySqlDataReader myReader;
             myReader = command.ExecuteReader();
             return myReader;
-        }
-
-
-        public void Connection()
-        {
-            myConnection = new MySqlConnection("SERVER = localhost; ; DATABASE = otomasyon; UID = root; PWD = uysal");
-            myConnection.Open();
-        }
-
-
-        public void Disconnect()
-        {
-            myConnection.Close();
         }
 
       

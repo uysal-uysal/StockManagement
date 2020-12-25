@@ -82,6 +82,10 @@ namespace StokOtomasyonu
             {
                 MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
             }
+            finally
+            {
+                database.Disconnect();
+            }
         }
 
 

@@ -33,6 +33,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
+            this.refreshTable = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lblCapacity = new System.Windows.Forms.Label();
             this.prdValue = new System.Windows.Forms.TextBox();
@@ -52,6 +53,14 @@
             this.newUser = new System.Windows.Forms.Button();
             this.hdrUserOp = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pnlConfirmDelete = new System.Windows.Forms.Panel();
+            this.txtConfirm = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbDeleteStockroom = new System.Windows.Forms.ComboBox();
+            this.btnDeleteStockroom = new System.Windows.Forms.Button();
+            this.deleteStockroom = new System.Windows.Forms.Button();
             this.hdrStockroomOp = new System.Windows.Forms.Button();
             this.addStockroom = new System.Windows.Forms.Button();
             this.refreshStockroom = new System.Windows.Forms.Button();
@@ -62,20 +71,15 @@
             this.stockroomBtn2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.deleteStockroom = new System.Windows.Forms.Button();
-            this.cmbDeleteStockroom = new System.Windows.Forms.ComboBox();
-            this.btnDeleteStockroom = new System.Windows.Forms.Button();
-            this.pnlConfirmDelete = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtConfirm = new System.Windows.Forms.TextBox();
-            this.refreshTable = new System.Windows.Forms.Button();
+            this.graphButton1 = new System.Windows.Forms.Button();
+            this.graphButton2 = new System.Windows.Forms.Button();
+            this.graphButton3 = new System.Windows.Forms.Button();
+            this.graphButton4 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productTable)).BeginInit();
             this.panel3.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.pnlConfirmDelete.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -105,6 +109,23 @@
             this.panel2.Size = new System.Drawing.Size(1642, 663);
             this.panel2.TabIndex = 5;
             this.panel2.Visible = false;
+            // 
+            // refreshTable
+            // 
+            this.refreshTable.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.refreshTable.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("refreshTable.BackgroundImage")));
+            this.refreshTable.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.refreshTable.FlatAppearance.BorderSize = 0;
+            this.refreshTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.refreshTable.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.refreshTable.ForeColor = System.Drawing.SystemColors.Control;
+            this.refreshTable.Location = new System.Drawing.Point(19, 322);
+            this.refreshTable.Name = "refreshTable";
+            this.refreshTable.Size = new System.Drawing.Size(25, 25);
+            this.refreshTable.TabIndex = 24;
+            this.refreshTable.UseVisualStyleBackColor = false;
+            this.refreshTable.Visible = false;
+            this.refreshTable.Click += new System.EventHandler(this.refreshTable_Click);
             // 
             // label2
             // 
@@ -385,6 +406,103 @@
             this.panel3.Size = new System.Drawing.Size(500, 663);
             this.panel3.TabIndex = 13;
             // 
+            // pnlConfirmDelete
+            // 
+            this.pnlConfirmDelete.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlConfirmDelete.Controls.Add(this.txtConfirm);
+            this.pnlConfirmDelete.Controls.Add(this.label5);
+            this.pnlConfirmDelete.Controls.Add(this.label4);
+            this.pnlConfirmDelete.Controls.Add(this.label3);
+            this.pnlConfirmDelete.Controls.Add(this.cmbDeleteStockroom);
+            this.pnlConfirmDelete.Controls.Add(this.btnDeleteStockroom);
+            this.pnlConfirmDelete.Location = new System.Drawing.Point(260, 138);
+            this.pnlConfirmDelete.Name = "pnlConfirmDelete";
+            this.pnlConfirmDelete.Size = new System.Drawing.Size(225, 277);
+            this.pnlConfirmDelete.TabIndex = 25;
+            this.pnlConfirmDelete.Visible = false;
+            // 
+            // txtConfirm
+            // 
+            this.txtConfirm.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.txtConfirm.Location = new System.Drawing.Point(40, 183);
+            this.txtConfirm.Name = "txtConfirm";
+            this.txtConfirm.Size = new System.Drawing.Size(145, 23);
+            this.txtConfirm.TabIndex = 28;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label5.Location = new System.Drawing.Point(47, 157);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(46, 16);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "label5";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label4.Location = new System.Drawing.Point(67, 121);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(90, 16);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "Please Type:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label3.Location = new System.Drawing.Point(-4, 93);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(228, 16);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "Are you sure you want to delete?";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cmbDeleteStockroom
+            // 
+            this.cmbDeleteStockroom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDeleteStockroom.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.cmbDeleteStockroom.FormattingEnabled = true;
+            this.cmbDeleteStockroom.Location = new System.Drawing.Point(3, 21);
+            this.cmbDeleteStockroom.Name = "cmbDeleteStockroom";
+            this.cmbDeleteStockroom.Size = new System.Drawing.Size(217, 24);
+            this.cmbDeleteStockroom.TabIndex = 23;
+            this.cmbDeleteStockroom.SelectedIndexChanged += new System.EventHandler(this.cmbDeleteStockroom_SelectedIndexChanged);
+            // 
+            // btnDeleteStockroom
+            // 
+            this.btnDeleteStockroom.BackColor = System.Drawing.Color.Red;
+            this.btnDeleteStockroom.FlatAppearance.BorderSize = 0;
+            this.btnDeleteStockroom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteStockroom.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnDeleteStockroom.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnDeleteStockroom.Location = new System.Drawing.Point(60, 223);
+            this.btnDeleteStockroom.Name = "btnDeleteStockroom";
+            this.btnDeleteStockroom.Size = new System.Drawing.Size(105, 25);
+            this.btnDeleteStockroom.TabIndex = 24;
+            this.btnDeleteStockroom.Text = "DELETE";
+            this.btnDeleteStockroom.UseVisualStyleBackColor = false;
+            this.btnDeleteStockroom.Click += new System.EventHandler(this.btnDeleteStockroom_Click);
+            // 
+            // deleteStockroom
+            // 
+            this.deleteStockroom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(188)))), ((int)(((byte)(125)))));
+            this.deleteStockroom.FlatAppearance.BorderSize = 0;
+            this.deleteStockroom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deleteStockroom.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.deleteStockroom.ForeColor = System.Drawing.SystemColors.Control;
+            this.deleteStockroom.Location = new System.Drawing.Point(260, 92);
+            this.deleteStockroom.Name = "deleteStockroom";
+            this.deleteStockroom.Size = new System.Drawing.Size(225, 40);
+            this.deleteStockroom.TabIndex = 22;
+            this.deleteStockroom.Text = "Delete";
+            this.deleteStockroom.UseVisualStyleBackColor = false;
+            this.deleteStockroom.Visible = false;
+            this.deleteStockroom.Click += new System.EventHandler(this.deleteStockroom_Click);
+            // 
             // hdrStockroomOp
             // 
             this.hdrStockroomOp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(86)))), ((int)(((byte)(86)))));
@@ -512,6 +630,10 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.graphButton4);
+            this.panel1.Controls.Add(this.graphButton3);
+            this.panel1.Controls.Add(this.graphButton2);
+            this.panel1.Controls.Add(this.graphButton1);
             this.panel1.Controls.Add(this.refreshStockroom);
             this.panel1.Controls.Add(this.stockroomBtn4);
             this.panel1.Controls.Add(this.stockroomBtn3);
@@ -528,119 +650,57 @@
             this.timer.Interval = 15;
             this.timer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // deleteStockroom
+            // graphButton1
             // 
-            this.deleteStockroom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(188)))), ((int)(((byte)(125)))));
-            this.deleteStockroom.FlatAppearance.BorderSize = 0;
-            this.deleteStockroom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.deleteStockroom.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.deleteStockroom.ForeColor = System.Drawing.SystemColors.Control;
-            this.deleteStockroom.Location = new System.Drawing.Point(260, 92);
-            this.deleteStockroom.Name = "deleteStockroom";
-            this.deleteStockroom.Size = new System.Drawing.Size(225, 40);
-            this.deleteStockroom.TabIndex = 22;
-            this.deleteStockroom.Text = "Delete";
-            this.deleteStockroom.UseVisualStyleBackColor = false;
-            this.deleteStockroom.Visible = false;
-            this.deleteStockroom.Click += new System.EventHandler(this.deleteStockroom_Click);
+            this.graphButton1.BackColor = System.Drawing.Color.DarkOrange;
+            this.graphButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.graphButton1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.graphButton1.Location = new System.Drawing.Point(18, 290);
+            this.graphButton1.Name = "graphButton1";
+            this.graphButton1.Size = new System.Drawing.Size(220, 60);
+            this.graphButton1.TabIndex = 18;
+            this.graphButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.graphButton1.UseVisualStyleBackColor = false;
+            this.graphButton1.Visible = false;
             // 
-            // cmbDeleteStockroom
+            // graphButton2
             // 
-            this.cmbDeleteStockroom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDeleteStockroom.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.cmbDeleteStockroom.FormattingEnabled = true;
-            this.cmbDeleteStockroom.Location = new System.Drawing.Point(3, 21);
-            this.cmbDeleteStockroom.Name = "cmbDeleteStockroom";
-            this.cmbDeleteStockroom.Size = new System.Drawing.Size(217, 24);
-            this.cmbDeleteStockroom.TabIndex = 23;
-            this.cmbDeleteStockroom.SelectedIndexChanged += new System.EventHandler(this.cmbDeleteStockroom_SelectedIndexChanged);
+            this.graphButton2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.graphButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.graphButton2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.graphButton2.Location = new System.Drawing.Point(18, 390);
+            this.graphButton2.Name = "graphButton2";
+            this.graphButton2.Size = new System.Drawing.Size(220, 60);
+            this.graphButton2.TabIndex = 19;
+            this.graphButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.graphButton2.UseVisualStyleBackColor = false;
+            this.graphButton2.Visible = false;
             // 
-            // btnDeleteStockroom
+            // graphButton3
             // 
-            this.btnDeleteStockroom.BackColor = System.Drawing.Color.Red;
-            this.btnDeleteStockroom.FlatAppearance.BorderSize = 0;
-            this.btnDeleteStockroom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteStockroom.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnDeleteStockroom.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnDeleteStockroom.Location = new System.Drawing.Point(60, 223);
-            this.btnDeleteStockroom.Name = "btnDeleteStockroom";
-            this.btnDeleteStockroom.Size = new System.Drawing.Size(105, 25);
-            this.btnDeleteStockroom.TabIndex = 24;
-            this.btnDeleteStockroom.Text = "DELETE";
-            this.btnDeleteStockroom.UseVisualStyleBackColor = false;
-            this.btnDeleteStockroom.Click += new System.EventHandler(this.btnDeleteStockroom_Click);
+            this.graphButton3.BackColor = System.Drawing.Color.DarkKhaki;
+            this.graphButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.graphButton3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.graphButton3.Location = new System.Drawing.Point(18, 490);
+            this.graphButton3.Name = "graphButton3";
+            this.graphButton3.Size = new System.Drawing.Size(220, 60);
+            this.graphButton3.TabIndex = 20;
+            this.graphButton3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.graphButton3.UseVisualStyleBackColor = false;
+            this.graphButton3.Visible = false;
             // 
-            // pnlConfirmDelete
+            // graphButton4
             // 
-            this.pnlConfirmDelete.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlConfirmDelete.Controls.Add(this.txtConfirm);
-            this.pnlConfirmDelete.Controls.Add(this.label5);
-            this.pnlConfirmDelete.Controls.Add(this.label4);
-            this.pnlConfirmDelete.Controls.Add(this.label3);
-            this.pnlConfirmDelete.Controls.Add(this.cmbDeleteStockroom);
-            this.pnlConfirmDelete.Controls.Add(this.btnDeleteStockroom);
-            this.pnlConfirmDelete.Location = new System.Drawing.Point(260, 138);
-            this.pnlConfirmDelete.Name = "pnlConfirmDelete";
-            this.pnlConfirmDelete.Size = new System.Drawing.Size(225, 277);
-            this.pnlConfirmDelete.TabIndex = 25;
-            this.pnlConfirmDelete.Visible = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label3.Location = new System.Drawing.Point(-4, 94);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(228, 16);
-            this.label3.TabIndex = 25;
-            this.label3.Text = "Are you sure you want to delete?";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label4.Location = new System.Drawing.Point(66, 121);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(90, 16);
-            this.label4.TabIndex = 26;
-            this.label4.Text = "Please Type:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label5.Location = new System.Drawing.Point(47, 157);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 16);
-            this.label5.TabIndex = 27;
-            this.label5.Text = "label5";
-            // 
-            // txtConfirm
-            // 
-            this.txtConfirm.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtConfirm.Location = new System.Drawing.Point(40, 183);
-            this.txtConfirm.Name = "txtConfirm";
-            this.txtConfirm.Size = new System.Drawing.Size(145, 23);
-            this.txtConfirm.TabIndex = 28;
-            // 
-            // refreshTable
-            // 
-            this.refreshTable.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.refreshTable.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("refreshTable.BackgroundImage")));
-            this.refreshTable.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.refreshTable.FlatAppearance.BorderSize = 0;
-            this.refreshTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.refreshTable.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.refreshTable.ForeColor = System.Drawing.SystemColors.Control;
-            this.refreshTable.Location = new System.Drawing.Point(19, 322);
-            this.refreshTable.Name = "refreshTable";
-            this.refreshTable.Size = new System.Drawing.Size(25, 25);
-            this.refreshTable.TabIndex = 24;
-            this.refreshTable.UseVisualStyleBackColor = false;
-            this.refreshTable.Visible = false;
-            this.refreshTable.Click += new System.EventHandler(this.refreshTable_Click);
+            this.graphButton4.BackColor = System.Drawing.Color.DarkSalmon;
+            this.graphButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.graphButton4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.graphButton4.Location = new System.Drawing.Point(18, 590);
+            this.graphButton4.Name = "graphButton4";
+            this.graphButton4.Size = new System.Drawing.Size(220, 60);
+            this.graphButton4.TabIndex = 21;
+            this.graphButton4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.graphButton4.UseVisualStyleBackColor = false;
+            this.graphButton4.Visible = false;
             // 
             // mainPage
             // 
@@ -662,9 +722,9 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productTable)).EndInit();
             this.panel3.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.pnlConfirmDelete.ResumeLayout(false);
             this.pnlConfirmDelete.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -711,5 +771,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtConfirm;
         private System.Windows.Forms.Button refreshTable;
+        private System.Windows.Forms.Button graphButton4;
+        private System.Windows.Forms.Button graphButton3;
+        private System.Windows.Forms.Button graphButton2;
+        private System.Windows.Forms.Button graphButton1;
     }
 }

@@ -20,8 +20,6 @@ namespace StokOtomasyonu
         }
 
 
-        DB database = new DB();
-        mainPage mainpage = new mainPage();
 
 
         private void Form1_Load(object sender, EventArgs e)
@@ -29,13 +27,15 @@ namespace StokOtomasyonu
           
         }
 
+        DB database = new DB();
+        mainPage mainpage = new mainPage();
 
         private void addPrdButton_Click(object sender, EventArgs e)
         {
             //check this id is already exist at warehouse?
             string checkId = $"SELECT count(warehouse) as kontrol FROM {mainPage.productType} WHERE id = {int.Parse(txtId.Text)} AND warehouse = {mainPage.store}";
             MySqlDataReader reader = database.Reader(checkId);
-            mainpage.checkCapacity(int.Parse(mainPage.store));
+            mainpage.checkTotalCapacity(int.Parse(mainPage.store));
             mainpage.checkCurrentCapacity(int.Parse(mainPage.store));
 
             try
@@ -49,6 +49,7 @@ namespace StokOtomasyonu
                             string query = $"INSERT INTO {mainPage.productType} (id,name,stock,warehouse) " +
                                       $"VALUES ('{int.Parse(txtId.Text)}','{txtName.Text}','{int.Parse(txtStock.Text)}','{mainPage.store}')";
                             database.ExecuteQuery(query);
+                            mainpage.draw();
                             this.Hide();
                         }
                         else
@@ -66,7 +67,10 @@ namespace StokOtomasyonu
             {
                 MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
             }
-            database.Disconnect();
+            finally
+            {
+                database.Disconnect();
+            }
         }
 
 

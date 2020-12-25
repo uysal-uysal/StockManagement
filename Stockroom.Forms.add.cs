@@ -30,12 +30,14 @@ namespace StokOtomasyonu
             {
                 countStockroom = int.Parse(reader[0].ToString());
             }
+            database.Disconnect();
         }
 
 
 
         private void addBtn_Click(object sender, EventArgs e)
         {
+            mainPage mainpage = new mainPage();
             //check this stockroom is already exist?
             string checkId = $"SELECT count(id) as kontrol FROM stockroom WHERE id = {int.Parse(txtId.Text)} OR name = '{txtName.Text}'";
             MySqlDataReader reader = database.Reader(checkId);
@@ -47,10 +49,18 @@ namespace StokOtomasyonu
                 {
                     if (int.Parse(reader[0].ToString()) < 1 && countStockroom < 4)
                     {
-                        string query = $"INSERT INTO stockroom (id,name,capacity) " +
+                        if (int.Parse(txtCapacity.Text) > 0 && int.Parse(txtCapacity.Text) < 200)
+                        {
+                            string query = $"INSERT INTO stockroom (id,name,capacity) " +
                                        $"VALUES ('{int.Parse(txtId.Text)}','{txtName.Text}','{int.Parse(txtCapacity.Text)}')";
-                        database.ExecuteQuery(query);
-                        this.Hide();
+                            database.ExecuteQuery(query);
+                            mainpage.draw();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Capacity must be under 200(max)!");
+                        }
                     }
                     else
                     {
@@ -62,7 +72,10 @@ namespace StokOtomasyonu
             {
                 MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
             }
-            database.Disconnect();
+            finally
+            {
+                database.Disconnect();
+            }
         }
 
        

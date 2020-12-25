@@ -81,12 +81,15 @@ namespace StokOtomasyonu
                             MessageBox.Show("User not found");
                         }
                     }
-                    database.Disconnect();
                 }
             }
             catch (Exception err)
             {
                 MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
+            }
+            finally
+            {
+                database.Disconnect();
             }
         }
 

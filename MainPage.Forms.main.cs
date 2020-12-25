@@ -23,20 +23,36 @@ namespace StokOtomasyonu
 
         private void mainPage_Load(object sender, EventArgs e)
         {
+            draw();
+
+        }
+
+        public void draw()
+        {
             addStr.count();
 
-            Button[] buttons = new Button[4];
-            buttons[0] = stockroomBtn1;
-            buttons[1] = stockroomBtn2;
-            buttons[2] = stockroomBtn3;
-            buttons[3] = stockroomBtn4;
+            Button[] stockroomButtons = new Button[4];
+            stockroomButtons[0] = stockroomBtn1;
+            stockroomButtons[1] = stockroomBtn2;
+            stockroomButtons[2] = stockroomBtn3;
+            stockroomButtons[3] = stockroomBtn4;
+
+            Button[] graphButtons = new Button[4];
+            graphButtons[0] = graphButton1;
+            graphButtons[1] = graphButton2;
+            graphButtons[2] = graphButton3;
+            graphButtons[3] = graphButton4;
 
             for (int i = 0; i < addStr.countStockroom; i++)
             {
-                buttons[i].Visible = true;
-                buttons[i].Text = setName(i + 1);
-            }
+                checkCurrentCapacity(i + 1);
+                stockroomButtons[i].Visible = true;
+                graphButtons[i].Visible = true;
+                stockroomButtons[i].Text = setName(i + 1);
+                graphButtons[i].Text = setName(i + 1) + " - " + currentCapacity.ToString(); ;
 
+                graphButtons[i].Width = (int.Parse(currentCapacity.ToString()) * 3); ;
+            }
         }
 
 
@@ -153,7 +169,6 @@ namespace StokOtomasyonu
         {
             string[] category = { "bread", "drinks", "fruits", "menswear", "womenswear", "vegetables", "tools" };
 
-
             if (txtConfirm.Text.Equals(label5.Text))
             {
                 foreach (var item in category)
@@ -161,31 +176,21 @@ namespace StokOtomasyonu
                     string deletePrd = $"DELETE FROM {item} WHERE warehouse = {store}";
                     string deleteStr = $"DELETE FROM stockroom WHERE name = '{cmbDeleteStockroom.SelectedItem.ToString()}'";
 
-                    Button[] buttons = new Button[4];
-                    buttons[0] = stockroomBtn1;
-                    buttons[1] = stockroomBtn2;
-                    buttons[2] = stockroomBtn3;
-                    buttons[3] = stockroomBtn4;
-
                     try
                     {
                         database.ExecuteQuery(deletePrd);
                         database.ExecuteQuery(deleteStr);
                         pnlConfirmDelete.Visible=false;
                         panel2.Visible = false;
+                        draw();
                     }
                     catch (Exception err)
                     {
                         MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
                     }
-
-                    for (int i = 0; i < addStr.countStockroom; i++)
+                    finally
                     {
-                        if (buttons[i].Text.ToString().Equals(cmbDeleteStockroom.SelectedItem.ToString()))
-                        {
-                            buttons[i].Visible = false;
-
-                        }
+                        database.Disconnect();
                     }
                 }
             }
@@ -196,7 +201,7 @@ namespace StokOtomasyonu
         }
 
 
-       
+
 
 
         public void refreshBtn_Click(object sender, EventArgs e)
@@ -214,7 +219,9 @@ namespace StokOtomasyonu
             {
                 name = reader[0].ToString();
             }
+            database.Disconnect();
             return name;
+
         }
 
 
@@ -307,6 +314,7 @@ namespace StokOtomasyonu
             prdValue.Visible = true;
             refreshTable.Visible = true;
             productTable.DataSource = database.ListProducts(mainPage.productType, mainPage.store).Tables[0];
+            database.Disconnect();
         }
 
 
@@ -339,7 +347,7 @@ namespace StokOtomasyonu
             string query = $"UPDATE {mainPage.productType} SET stock = stock + '{value}' " +
                            $"WHERE id= '{productTable.SelectedRows[0].Cells[0].Value.ToString()}' AND warehouse='{mainPage.store}'";
 
-            checkCapacity(int.Parse(store));
+            checkTotalCapacity(int.Parse(store));
             checkCurrentCapacity(int.Parse(store));
 
             try
@@ -348,6 +356,8 @@ namespace StokOtomasyonu
                 {
                     database.ExecuteQuery(query);
                     updateCapacity();
+                    draw();
+                    productTable.DataSource = database.ListProducts(mainPage.productType, mainPage.store).Tables[0];
                 }
                 else
                 {
@@ -358,7 +368,10 @@ namespace StokOtomasyonu
             {
                 MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
             }
-            productTable.DataSource = database.ListProducts(mainPage.productType, mainPage.store).Tables[0];
+            finally
+            {
+                database.Disconnect();
+            }
         }
 
 
@@ -373,6 +386,8 @@ namespace StokOtomasyonu
                 {
                     database.ExecuteQuery(query);
                     updateCapacity();
+                    draw();
+                    productTable.DataSource = database.ListProducts(mainPage.productType, mainPage.store).Tables[0];
                 }
                 else
                 {
@@ -383,8 +398,10 @@ namespace StokOtomasyonu
             {
                 MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
             }
-           
-            productTable.DataSource = database.ListProducts(mainPage.productType, mainPage.store).Tables[0];
+            finally
+            {
+                database.Disconnect();
+            }
         }
 
 
@@ -428,7 +445,7 @@ namespace StokOtomasyonu
 
 
         public static int totalCapacity;
-        public void checkCapacity(int stockroom)
+        public void checkTotalCapacity(int stockroom)
         {
             string checkcapacity = $"SELECT capacity FROM stockroom WHERE id={stockroom}";
             MySqlDataReader reader = database.Reader(checkcapacity);
@@ -444,7 +461,10 @@ namespace StokOtomasyonu
             {
                 MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
             }
-            database.Disconnect();
+            finally
+            {
+                database.Disconnect();
+            }
         }
 
 
@@ -470,21 +490,35 @@ namespace StokOtomasyonu
                 {
                     MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
                 }
+                finally
+                {
+                    database.Disconnect();
+                }
             }
-            database.Disconnect();
         }
 
         public void updateCapacity()
         {
-            checkCapacity(int.Parse(store));
+            checkTotalCapacity(int.Parse(store));
             checkCurrentCapacity(int.Parse(store));
             lblCapacity.Text = currentCapacity.ToString() + " / " + totalCapacity.ToString();
         }
 
         private void refreshTable_Click(object sender, EventArgs e)
         {
-            productTable.DataSource = database.ListProducts(mainPage.productType, mainPage.store).Tables[0];
-            updateCapacity();
+            try
+            {
+                productTable.DataSource = database.ListProducts(mainPage.productType, mainPage.store).Tables[0];
+                updateCapacity();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
+            }
+            finally
+            {
+                database.Disconnect();
+            }
         }
     }
 }

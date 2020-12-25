@@ -26,6 +26,7 @@ namespace StokOtomasyonu
         private void Form1_Load(object sender, EventArgs e)
         {
             userTable.DataSource = database.ListDatas("users").Tables[0]; // --> list datas to datagridview
+            database.Disconnect();
         }
 
 
@@ -36,12 +37,16 @@ namespace StokOtomasyonu
             try
             {
                 database.ExecuteQuery(query);
+                userTable.DataSource = database.ListDatas("users").Tables[0];
             }
             catch (Exception err)
             {
                 MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
             }
-            userTable.DataSource = database.ListDatas("users").Tables[0];
+            finally
+            {
+                database.Disconnect();
+            }
         }
 
 

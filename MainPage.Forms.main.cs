@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.LookAndFeel;
 using DevExpress.XtraEditors;
 using MySql.Data.MySqlClient;
 
@@ -27,9 +28,46 @@ namespace StokOtomasyonu
 
         }
 
+        public bool checkStockroom(int id)
+        {
+            string query = $"SELECT count(id) as kontrol FROM stockroom WHERE id = {id}";
+            MySqlDataReader reader = database.Reader(query);
+
+            try
+            {
+                while (reader.Read())
+                {
+                    if (int.Parse(reader[0].ToString()) == 1)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
+            }
+            finally
+            {
+                database.Disconnect();
+            }
+            return false;
+        }
+
+
         public void draw()
         {
             addStr.count();
+
+            SimpleButton[] graphBar = new SimpleButton[4];
+            graphBar[0]= simpleButton1;
+            graphBar[1]= simpleButton2;
+            graphBar[2]= simpleButton3;
+            graphBar[3]= simpleButton4;
 
             Button[] stockroomButtons = new Button[4];
             stockroomButtons[0] = stockroomBtn1;
@@ -37,21 +75,25 @@ namespace StokOtomasyonu
             stockroomButtons[2] = stockroomBtn3;
             stockroomButtons[3] = stockroomBtn4;
 
-            Button[] graphButtons = new Button[4];
-            graphButtons[0] = graphButton1;
-            graphButtons[1] = graphButton2;
-            graphButtons[2] = graphButton3;
-            graphButtons[3] = graphButton4;
 
-            for (int i = 0; i < addStr.countStockroom; i++)
+            for (int i = 0; i < 4; i++)
             {
-                checkCurrentCapacity(i + 1);
-                stockroomButtons[i].Visible = true;
-                graphButtons[i].Visible = true;
-                stockroomButtons[i].Text = setName(i + 1);
-                graphButtons[i].Text = setName(i + 1) + " - " + currentCapacity.ToString(); ;
+                if (checkStockroom(i+1))
+                {
 
-                graphButtons[i].Width = (int.Parse(currentCapacity.ToString()) * 3); ;
+                    graphBar[i].LookAndFeel.Style = LookAndFeelStyle.Flat;
+                    graphBar[i].LookAndFeel.UseDefaultLookAndFeel = false;
+                    graphBar[i].Appearance.Options.UseBackColor = true;
+
+                    stockroomButtons[i].Visible = true;
+                    graphBar[i].Visible = true;
+
+                    stockroomButtons[i].Text = setName(i + 1);
+                    checkCurrentCapacity(i + 1);
+                    graphBar[i].Text = setName(i + 1) + " - " + currentCapacity.ToString(); ;
+                    graphBar[i].Width = 50 + (int.Parse(currentCapacity.ToString()) * 3);
+
+                }
             }
         }
 
@@ -67,14 +109,17 @@ namespace StokOtomasyonu
         public static bool stt = false;//new user is admin? stt-false -- > common
         public static string store;
         public static string productType;
+        public static int graphStore;
+
+        public static int totalCapacity = 0;
+        public static int currentCapacity = 0;
 
 
         private void stockroomBtn1_Click(object sender, EventArgs e)
         {
             store = "1";
-            panel2.Visible = true;
+            productPanel.Visible = true;
             productTable.DataSource = null;
-            timer.Enabled = true;
             deleteStockroom.Visible = true;
             updateCapacity();
         }
@@ -83,9 +128,8 @@ namespace StokOtomasyonu
         private void stockroomBtn2_Click(object sender, EventArgs e)
         {
             store = "2";
-            panel2.Visible = true;
+            productPanel.Visible = true;
             productTable.DataSource = null;
-            timer.Enabled = true;
             deleteStockroom.Visible = true;
             updateCapacity();
         }
@@ -94,9 +138,8 @@ namespace StokOtomasyonu
         private void stockroomBtn3_Click(object sender, EventArgs e)
         {
             store = "3";
-            panel2.Visible = true;
+            productPanel.Visible = true;
             productTable.DataSource = null;
-            timer.Enabled = true;
             deleteStockroom.Visible = true;
             updateCapacity();
         }
@@ -105,9 +148,8 @@ namespace StokOtomasyonu
         private void stockroomBtn4_Click(object sender, EventArgs e)
         {
             store = "4";
-            panel2.Visible = true;
+            productPanel.Visible = true;
             productTable.DataSource = null;
-            timer.Enabled = true;
             deleteStockroom.Visible = true;
             updateCapacity();
         }
@@ -132,20 +174,23 @@ namespace StokOtomasyonu
             //refresh combobox
             cmbDeleteStockroom.DataSource = null;
             cmbDeleteStockroom.Items.Clear();
-            this.AutoScrollPosition = new Point(0, 0);
 
 
             if (addStr.countStockroom >= 1)
             {
                 if (loginpage.IsAdmin())
                 {
-                    for (int i = 0; i < addStr.countStockroom; i++)
+                    for (int i = 0; i < 4; i++)
                     {
-                        cmbDeleteStockroom.Items.Add(setName(i + 1).ToString());
+                        if (checkStockroom(i + 1))
+                        {
+                            cmbDeleteStockroom.Items.Add(setName(i + 1).ToString());
+                        }
                     }
                     cmbDeleteStockroom.SelectedIndex = 0;
                     pnlConfirmDelete.Visible = true;
-                    label5.Text = " 'DELETE-DELETE " + cmbDeleteStockroom.SelectedItem.ToString() + "'";
+                    lblConfirm.Text = "DELETE-DELETE " + cmbDeleteStockroom.SelectedItem.ToString();
+
                 }
                 else
                 {
@@ -161,28 +206,44 @@ namespace StokOtomasyonu
 
         private void cmbDeleteStockroom_SelectedIndexChanged(object sender, EventArgs e)
         {
-            label5.Text = "DELETE-DELETE " + cmbDeleteStockroom.SelectedItem.ToString();
+            lblConfirm.Text = "DELETE-DELETE " + cmbDeleteStockroom.SelectedItem.ToString();
         }
 
 
         private void btnDeleteStockroom_Click(object sender, EventArgs e)
         {
+
+            Button[] stockroomButtons = new Button[4];
+            stockroomButtons[0] = stockroomBtn1;
+            stockroomButtons[1] = stockroomBtn2;
+            stockroomButtons[2] = stockroomBtn3;
+            stockroomButtons[3] = stockroomBtn4;
+
+            SimpleButton[] graphButtons = new SimpleButton[4];
+            graphButtons[0] = simpleButton1;
+            graphButtons[1] = simpleButton2;
+            graphButtons[2] = simpleButton3;
+            graphButtons[3] = simpleButton4;
+
             string[] category = { "bread", "drinks", "fruits", "menswear", "womenswear", "vegetables", "tools" };
 
-            if (txtConfirm.Text.Equals(label5.Text))
+            if (txtConfirm.Text.Equals(lblConfirm.Text))
             {
+                //check confirmation text
+
+                string deleteStr = $"DELETE FROM stockroom WHERE name = '{cmbDeleteStockroom.SelectedItem.ToString()}'";
+                //delete stockroom at db
+
                 foreach (var item in category)
                 {
                     string deletePrd = $"DELETE FROM {item} WHERE warehouse = {store}";
-                    string deleteStr = $"DELETE FROM stockroom WHERE name = '{cmbDeleteStockroom.SelectedItem.ToString()}'";
+                    //delete products from db where-> at this warehouse 
 
                     try
                     {
                         database.ExecuteQuery(deletePrd);
                         database.ExecuteQuery(deleteStr);
-                        pnlConfirmDelete.Visible=false;
-                        panel2.Visible = false;
-                        draw();
+                       
                     }
                     catch (Exception err)
                     {
@@ -190,7 +251,21 @@ namespace StokOtomasyonu
                     }
                     finally
                     {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (stockroomButtons[i].Text.ToString().Equals(cmbDeleteStockroom.SelectedItem.ToString()))
+                            {
+                                stockroomButtons[i].Visible = false;
+                                graphButtons[i].Visible = false;
+                            }
+                        }
+                        pnlConfirmDelete.Visible = false;
+                        deleteStockroom.Visible = false;
+                        productPanel.Visible = false;
                         database.Disconnect();
+                        txtConfirm.Clear();
+                        updateCapacity();
+                        draw();
                     }
                 }
             }
@@ -198,20 +273,19 @@ namespace StokOtomasyonu
             {
                 MessageBox.Show("Wrong!");
             }
+
         }
-
-
-
 
 
         public void refreshBtn_Click(object sender, EventArgs e)
         {
-            mainPage_Load(null, EventArgs.Empty);
+            draw();
         }
 
 
         public string setName(int id)
         {
+            //set buttons and graph buttons name
             string query = $"SELECT name FROM stockroom WHERE id={id}";
             MySqlDataReader reader = database.Reader(query);
             string name = "";
@@ -249,7 +323,8 @@ namespace StokOtomasyonu
 
         private void addCommon_Click(object sender, EventArgs e)
         {
-            stt = false;//new user -- > common
+            stt = false;
+            //mean of stt--> if true, user admin
             regPage register = new regPage();
             register.Show();
         }
@@ -267,17 +342,10 @@ namespace StokOtomasyonu
             }
             else
             {
-                MessageBox.Show("you cant delete any user!");
+                MessageBox.Show("You cant delete any user!");
             }
         }
         
-
-        private void category_Click(object sender, EventArgs e)
-        {
-            category category = new category();
-            category.Show();
-        }
-
 
         private void addProduct_Click(object sender, EventArgs e)
         {
@@ -292,13 +360,13 @@ namespace StokOtomasyonu
             {
                 if (deletePrd == null || deletePrd.IsDisposed)
                 {
-                    deletePrd = new deletePrd();
+                    deletePrd deletePrd = new deletePrd();
                     deletePrd.Show();
                 }
             }
             else
             {
-                MessageBox.Show("you cant delete any product!");
+                MessageBox.Show("You cant delete any product!");
             }
         }
 
@@ -313,13 +381,15 @@ namespace StokOtomasyonu
             reduce.Visible = true;
             prdValue.Visible = true;
             refreshTable.Visible = true;
-            productTable.DataSource = database.ListProducts(mainPage.productType, mainPage.store).Tables[0];
+            productTable.DataSource = database.ListDatas(mainPage.productType, mainPage.store).Tables[0];
             database.Disconnect();
         }
 
 
         private void prdValue_TextChanged(object sender, EventArgs e)
         {
+            //only can type number
+
             try
             {
                 value = Int32.Parse(prdValue.Text);
@@ -330,10 +400,11 @@ namespace StokOtomasyonu
             }
         }
 
-
-        //only type number at increase/reduce textbox
+        
         private void prdValue_KeyPress(object sender, KeyPressEventArgs e)
         {
+            //only type number at increase/reduce textbox
+
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
@@ -354,10 +425,12 @@ namespace StokOtomasyonu
             {
                 if (currentCapacity + value <= totalCapacity)
                 {
+                    //if capacity is enough
+
                     database.ExecuteQuery(query);
                     updateCapacity();
                     draw();
-                    productTable.DataSource = database.ListProducts(mainPage.productType, mainPage.store).Tables[0];
+                    productTable.DataSource = database.ListDatas(mainPage.productType, mainPage.store).Tables[0];
                 }
                 else
                 {
@@ -387,7 +460,7 @@ namespace StokOtomasyonu
                     database.ExecuteQuery(query);
                     updateCapacity();
                     draw();
-                    productTable.DataSource = database.ListProducts(mainPage.productType, mainPage.store).Tables[0];
+                    productTable.DataSource = database.ListDatas(mainPage.productType, mainPage.store).Tables[0];
                 }
                 else
                 {
@@ -405,46 +478,20 @@ namespace StokOtomasyonu
         }
 
 
-        //timer for slide effect 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (this.HorizontalScroll.Value >= 1222)
-            {
-                this.timer.Enabled = false;
-            }
-            else
-            {
-                int x = this.HorizontalScroll.Value + this.HorizontalScroll.SmallChange * 6;
-                this.AutoScrollPosition = new Point(x, 0);
-            }
-        }
-
-
         private void exit_Click(object sender, EventArgs e)
         {
-            DialogResult x = MessageBox.Show("Do you want to exit", "Are you sure?", MessageBoxButtons.YesNo);
-            if (x == DialogResult.Yes)
+            DialogResult dialogRes = MessageBox.Show("Do you want to exit", "Are you sure?", MessageBoxButtons.YesNo);
+            if (dialogRes == DialogResult.Yes)
             {
                 Environment.Exit(0);
             }
         }
 
 
-        private void main_FormClosing_1(object sender, FormClosingEventArgs e)
-        {
-            DialogResult x = MessageBox.Show("Do you want to exit", "Are you sure?", MessageBoxButtons.YesNo);
-            if (x == DialogResult.Yes)
-            {
-                Environment.Exit(0);
-            }
-            else if (x == DialogResult.No)
-            {
-                e.Cancel = true;
-            }
-        }
+       
 
+       
 
-        public static int totalCapacity;
         public void checkTotalCapacity(int stockroom)
         {
             string checkcapacity = $"SELECT capacity FROM stockroom WHERE id={stockroom}";
@@ -468,7 +515,6 @@ namespace StokOtomasyonu
         }
 
 
-        public static int currentCapacity = 0;
         public void checkCurrentCapacity(int stockroom)
         {
             currentCapacity = 0;
@@ -497,6 +543,9 @@ namespace StokOtomasyonu
             }
         }
 
+       
+
+
         public void updateCapacity()
         {
             checkTotalCapacity(int.Parse(store));
@@ -508,8 +557,8 @@ namespace StokOtomasyonu
         {
             try
             {
-                productTable.DataSource = database.ListProducts(mainPage.productType, mainPage.store).Tables[0];
                 updateCapacity();
+                productTable.DataSource = database.ListDatas(mainPage.productType, mainPage.store).Tables[0];
             }
             catch (Exception err)
             {
@@ -517,8 +566,44 @@ namespace StokOtomasyonu
             }
             finally
             {
+                draw();
                 database.Disconnect();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+            Environment.Exit(0);
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            graphStore = 1;
+            graph graph = new graph();
+            graph.Show();
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            graphStore = 2;
+            graph graph = new graph();
+            graph.Show();
+
+        }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            graphStore = 3;
+            graph graph = new graph();
+            graph.Show();
+        }
+
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            graphStore = 4;
+            graph graph = new graph();
+            graph.Show();
         }
     }
 }

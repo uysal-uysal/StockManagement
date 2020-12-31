@@ -23,7 +23,7 @@ namespace StokOtomasyonu
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            prdTable.DataSource = database.ListProducts(mainPage.productType, mainPage.store).Tables[0];// --> list datas to datagridview
+            prdTable.DataSource = database.ListDatas(mainPage.productType, mainPage.store).Tables[0];// --> list datas to datagridview
             database.Disconnect();
         }
 
@@ -36,7 +36,7 @@ namespace StokOtomasyonu
             try
             {
                 database.ExecuteQuery(query);
-                prdTable.DataSource = database.ListProducts(mainPage.productType, mainPage.store).Tables[0];
+                prdTable.DataSource = database.ListDatas(mainPage.productType, mainPage.store).Tables[0];
                 mainpage.draw();
             }
             catch (Exception err)

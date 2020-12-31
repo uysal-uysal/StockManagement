@@ -64,17 +64,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB.cs" />
+    <Compile Include="Product.Forms.graph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Product.Forms.graph.Designer.cs">
+      <DependentUpon>Product.Forms.graph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Product.Forms.add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Product.Forms.add.Designer.cs">
+      <DependentUpon>Product.Forms.add.cs</DependentUpon>
+    </Compile>
     <Compile Include="Stockroom.Forms.add.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Stockroom.Forms.add.Designer.cs">
       <DependentUpon>Stockroom.Forms.add.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Product.Forms.category.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Product.Forms.category.Designer.cs">
-      <DependentUpon>Product.Forms.category.cs</DependentUpon>
     </Compile>
     <Compile Include="User.Forms.delete.cs">
       <SubType>Form</SubType>
@@ -87,12 +93,6 @@
     </Compile>
     <Compile Include="Product.Forms.delete.Designer.cs">
       <DependentUpon>Product.Forms.delete.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Product.Forms.add.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Product.Forms.add.Designer.cs">
-      <DependentUpon>Product.Forms.add.cs</DependentUpon>
     </Compile>
     <Compile Include="MainPage.Forms.main.cs">
       <SubType>Form</SubType>
@@ -114,8 +114,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Product.Forms.category.resx">
-      <DependentUpon>Product.Forms.category.cs</DependentUpon>
+    <EmbeddedResource Include="Product.Forms.add.resx">
+      <DependentUpon>Product.Forms.add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Product.Forms.graph.resx">
+      <DependentUpon>Product.Forms.graph.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stockroom.Forms.add.resx">
       <DependentUpon>Stockroom.Forms.add.cs</DependentUpon>
@@ -125,9 +128,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Product.Forms.delete.resx">
       <DependentUpon>Product.Forms.delete.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Product.Forms.add.resx">
-      <DependentUpon>Product.Forms.add.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User.Forms.login.resx">
       <DependentUpon>User.Forms.login.cs</DependentUpon>

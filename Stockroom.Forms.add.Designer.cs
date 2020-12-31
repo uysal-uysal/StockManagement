@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(addStr));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtId = new System.Windows.Forms.TextBox();
+            this.cmbId = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.addBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,7 +44,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panel1.Controls.Add(this.txtId);
+            this.panel1.Controls.Add(this.cmbId);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.addBtn);
             this.panel1.Controls.Add(this.label2);
@@ -57,14 +57,19 @@
             this.panel1.Size = new System.Drawing.Size(346, 446);
             this.panel1.TabIndex = 8;
             // 
-            // txtId
+            // cmbId
             // 
-            this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtId.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtId.Location = new System.Drawing.Point(50, 178);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(247, 23);
-            this.txtId.TabIndex = 4;
+            this.cmbId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbId.FormattingEnabled = true;
+            this.cmbId.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4"});
+            this.cmbId.Location = new System.Drawing.Point(50, 178);
+            this.cmbId.Name = "cmbId";
+            this.cmbId.Size = new System.Drawing.Size(247, 21);
+            this.cmbId.TabIndex = 8;
             // 
             // label1
             // 
@@ -155,6 +160,7 @@
             this.Name = "addStr";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.addStr_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -164,7 +170,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button addBtn;
         private System.Windows.Forms.Label label2;
@@ -172,5 +177,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtCapacity;
         private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.ComboBox cmbId;
     }
 }

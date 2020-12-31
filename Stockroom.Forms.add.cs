@@ -18,19 +18,37 @@ namespace StokOtomasyonu
             InitializeComponent();
         }
 
+
         DB database = new DB();
         public static int countStockroom;
+
+
+        private void addStr_Load(object sender, EventArgs e)
+        {
+            count();
+        }
 
 
         public void count()
         {
             string query = $"SELECT count(id) as kontrol FROM stockroom";
             MySqlDataReader reader = database.Reader(query);
-            while (reader.Read())
+            try
             {
-                countStockroom = int.Parse(reader[0].ToString());
+                while (reader.Read())
+                {
+                    countStockroom = int.Parse(reader[0].ToString());
+                }
             }
-            database.Disconnect();
+            catch (Exception err)
+            {
+                MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
+            }
+            finally
+            {
+                database.Disconnect();
+            }
+            
         }
 
 
@@ -39,7 +57,7 @@ namespace StokOtomasyonu
         {
             mainPage mainpage = new mainPage();
             //check this stockroom is already exist?
-            string checkId = $"SELECT count(id) as kontrol FROM stockroom WHERE id = {int.Parse(txtId.Text)} OR name = '{txtName.Text}'";
+            string checkId = $"SELECT count(id) as kontrol FROM stockroom WHERE id = {int.Parse(cmbId.SelectedItem.ToString())} OR name = '{txtName.Text}'";
             MySqlDataReader reader = database.Reader(checkId);
             count();
 
@@ -52,10 +70,10 @@ namespace StokOtomasyonu
                         if (int.Parse(txtCapacity.Text) > 0 && int.Parse(txtCapacity.Text) < 200)
                         {
                             string query = $"INSERT INTO stockroom (id,name,capacity) " +
-                                       $"VALUES ('{int.Parse(txtId.Text)}','{txtName.Text}','{int.Parse(txtCapacity.Text)}')";
+                                       $"VALUES ('{int.Parse(cmbId.SelectedItem.ToString())}','{txtName.Text}','{int.Parse(txtCapacity.Text)}')";
                             database.ExecuteQuery(query);
                             mainpage.draw();
-                            this.Hide();
+                            this.Close();
                         }
                         else
                         {
@@ -91,5 +109,7 @@ namespace StokOtomasyonu
         {
             this.Close();
         }
+
+       
     }
 }

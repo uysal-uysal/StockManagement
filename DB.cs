@@ -64,7 +64,7 @@ namespace StokOtomasyonu
         }
 
 
-        public DataSet ListProducts(string table, string stockroom)
+        public DataSet ListDatas(string table, string stockroom)
         {
             Connection();
             string query = $"SELECT * FROM {table} WHERE warehouse = {stockroom}";

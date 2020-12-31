@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainPage));
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.productPanel = new System.Windows.Forms.Panel();
             this.refreshTable = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lblCapacity = new System.Windows.Forms.Label();
@@ -43,7 +43,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.addProduct = new System.Windows.Forms.Button();
             this.categoryList = new System.Windows.Forms.ComboBox();
-            this.category = new System.Windows.Forms.Button();
             this.deleteProduct = new System.Windows.Forms.Button();
             this.hdrProduct = new System.Windows.Forms.Button();
             this.addCommon = new System.Windows.Forms.Button();
@@ -52,10 +51,11 @@
             this.delUser = new System.Windows.Forms.Button();
             this.newUser = new System.Windows.Forms.Button();
             this.hdrUserOp = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.opsPanel = new System.Windows.Forms.Panel();
+            this.disconnectButton = new System.Windows.Forms.Button();
             this.pnlConfirmDelete = new System.Windows.Forms.Panel();
             this.txtConfirm = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblConfirm = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbDeleteStockroom = new System.Windows.Forms.ComboBox();
@@ -69,17 +69,19 @@
             this.hdrStockroom = new System.Windows.Forms.Button();
             this.stockroomBtn1 = new System.Windows.Forms.Button();
             this.stockroomBtn2 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.timer = new System.Windows.Forms.Timer(this.components);
-            this.graphButton1 = new System.Windows.Forms.Button();
-            this.graphButton2 = new System.Windows.Forms.Button();
-            this.graphButton3 = new System.Windows.Forms.Button();
-            this.graphButton4 = new System.Windows.Forms.Button();
-            this.panel2.SuspendLayout();
+            this.stockroomPanel = new System.Windows.Forms.Panel();
+            this.graphPanel = new System.Windows.Forms.Panel();
+            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.label5 = new System.Windows.Forms.Label();
+            this.productPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productTable)).BeginInit();
-            this.panel3.SuspendLayout();
+            this.opsPanel.SuspendLayout();
             this.pnlConfirmDelete.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.stockroomPanel.SuspendLayout();
+            this.graphPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -87,28 +89,27 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // panel2
+            // productPanel
             // 
-            this.panel2.AutoScroll = true;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.refreshTable);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.lblCapacity);
-            this.panel2.Controls.Add(this.prdValue);
-            this.panel2.Controls.Add(this.reduce);
-            this.panel2.Controls.Add(this.increase);
-            this.panel2.Controls.Add(this.productTable);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.addProduct);
-            this.panel2.Controls.Add(this.categoryList);
-            this.panel2.Controls.Add(this.category);
-            this.panel2.Controls.Add(this.deleteProduct);
-            this.panel2.Controls.Add(this.hdrProduct);
-            this.panel2.Location = new System.Drawing.Point(1245, 39);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1642, 663);
-            this.panel2.TabIndex = 5;
-            this.panel2.Visible = false;
+            this.productPanel.AutoScroll = true;
+            this.productPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.productPanel.Controls.Add(this.refreshTable);
+            this.productPanel.Controls.Add(this.label2);
+            this.productPanel.Controls.Add(this.lblCapacity);
+            this.productPanel.Controls.Add(this.prdValue);
+            this.productPanel.Controls.Add(this.reduce);
+            this.productPanel.Controls.Add(this.increase);
+            this.productPanel.Controls.Add(this.productTable);
+            this.productPanel.Controls.Add(this.label1);
+            this.productPanel.Controls.Add(this.addProduct);
+            this.productPanel.Controls.Add(this.categoryList);
+            this.productPanel.Controls.Add(this.deleteProduct);
+            this.productPanel.Controls.Add(this.hdrProduct);
+            this.productPanel.Location = new System.Drawing.Point(1253, 28);
+            this.productPanel.Name = "productPanel";
+            this.productPanel.Size = new System.Drawing.Size(507, 663);
+            this.productPanel.TabIndex = 5;
+            this.productPanel.Visible = false;
             // 
             // refreshTable
             // 
@@ -252,21 +253,6 @@
             this.categoryList.TabIndex = 14;
             this.categoryList.SelectedIndexChanged += new System.EventHandler(this.categoryList_SelectedIndexChanged);
             // 
-            // category
-            // 
-            this.category.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(188)))), ((int)(((byte)(125)))));
-            this.category.FlatAppearance.BorderSize = 0;
-            this.category.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.category.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.category.ForeColor = System.Drawing.SystemColors.Control;
-            this.category.Location = new System.Drawing.Point(264, 94);
-            this.category.Name = "category";
-            this.category.Size = new System.Drawing.Size(225, 40);
-            this.category.TabIndex = 13;
-            this.category.Text = "Product Category";
-            this.category.UseVisualStyleBackColor = false;
-            this.category.Click += new System.EventHandler(this.category_Click);
-            // 
             // deleteProduct
             // 
             this.deleteProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(188)))), ((int)(((byte)(125)))));
@@ -338,7 +324,7 @@
             this.exit.ForeColor = System.Drawing.SystemColors.Control;
             this.exit.Location = new System.Drawing.Point(15, 619);
             this.exit.Name = "exit";
-            this.exit.Size = new System.Drawing.Size(470, 40);
+            this.exit.Size = new System.Drawing.Size(225, 40);
             this.exit.TabIndex = 8;
             this.exit.Text = "Exit";
             this.exit.UseVisualStyleBackColor = false;
@@ -388,29 +374,45 @@
             this.hdrUserOp.Text = "User Operations";
             this.hdrUserOp.UseVisualStyleBackColor = false;
             // 
-            // panel3
+            // opsPanel
             // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.pnlConfirmDelete);
-            this.panel3.Controls.Add(this.deleteStockroom);
-            this.panel3.Controls.Add(this.hdrUserOp);
-            this.panel3.Controls.Add(this.hdrStockroomOp);
-            this.panel3.Controls.Add(this.addCommon);
-            this.panel3.Controls.Add(this.addStockroom);
-            this.panel3.Controls.Add(this.newUser);
-            this.panel3.Controls.Add(this.addAdmin);
-            this.panel3.Controls.Add(this.delUser);
-            this.panel3.Controls.Add(this.exit);
-            this.panel3.Location = new System.Drawing.Point(723, 39);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(500, 663);
-            this.panel3.TabIndex = 13;
+            this.opsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.opsPanel.Controls.Add(this.disconnectButton);
+            this.opsPanel.Controls.Add(this.pnlConfirmDelete);
+            this.opsPanel.Controls.Add(this.deleteStockroom);
+            this.opsPanel.Controls.Add(this.hdrUserOp);
+            this.opsPanel.Controls.Add(this.hdrStockroomOp);
+            this.opsPanel.Controls.Add(this.addCommon);
+            this.opsPanel.Controls.Add(this.addStockroom);
+            this.opsPanel.Controls.Add(this.newUser);
+            this.opsPanel.Controls.Add(this.addAdmin);
+            this.opsPanel.Controls.Add(this.delUser);
+            this.opsPanel.Controls.Add(this.exit);
+            this.opsPanel.Location = new System.Drawing.Point(737, 28);
+            this.opsPanel.Name = "opsPanel";
+            this.opsPanel.Size = new System.Drawing.Size(500, 663);
+            this.opsPanel.TabIndex = 13;
+            // 
+            // disconnectButton
+            // 
+            this.disconnectButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(188)))), ((int)(((byte)(125)))));
+            this.disconnectButton.FlatAppearance.BorderSize = 0;
+            this.disconnectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.disconnectButton.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.disconnectButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.disconnectButton.Location = new System.Drawing.Point(260, 619);
+            this.disconnectButton.Name = "disconnectButton";
+            this.disconnectButton.Size = new System.Drawing.Size(225, 40);
+            this.disconnectButton.TabIndex = 26;
+            this.disconnectButton.Text = "Disconnect";
+            this.disconnectButton.UseVisualStyleBackColor = false;
+            this.disconnectButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // pnlConfirmDelete
             // 
             this.pnlConfirmDelete.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlConfirmDelete.Controls.Add(this.txtConfirm);
-            this.pnlConfirmDelete.Controls.Add(this.label5);
+            this.pnlConfirmDelete.Controls.Add(this.lblConfirm);
             this.pnlConfirmDelete.Controls.Add(this.label4);
             this.pnlConfirmDelete.Controls.Add(this.label3);
             this.pnlConfirmDelete.Controls.Add(this.cmbDeleteStockroom);
@@ -429,15 +431,15 @@
             this.txtConfirm.Size = new System.Drawing.Size(145, 23);
             this.txtConfirm.TabIndex = 28;
             // 
-            // label5
+            // lblConfirm
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label5.Location = new System.Drawing.Point(47, 157);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 16);
-            this.label5.TabIndex = 27;
-            this.label5.Text = "label5";
+            this.lblConfirm.AutoSize = true;
+            this.lblConfirm.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblConfirm.Location = new System.Drawing.Point(47, 157);
+            this.lblConfirm.Name = "lblConfirm";
+            this.lblConfirm.Size = new System.Drawing.Size(46, 16);
+            this.lblConfirm.TabIndex = 27;
+            this.lblConfirm.Text = "label5";
             // 
             // label4
             // 
@@ -542,7 +544,7 @@
             this.refreshStockroom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.refreshStockroom.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.refreshStockroom.ForeColor = System.Drawing.SystemColors.Control;
-            this.refreshStockroom.Location = new System.Drawing.Point(585, 46);
+            this.refreshStockroom.Location = new System.Drawing.Point(3, 214);
             this.refreshStockroom.Name = "refreshStockroom";
             this.refreshStockroom.Size = new System.Drawing.Size(25, 25);
             this.refreshStockroom.TabIndex = 13;
@@ -627,80 +629,107 @@
             this.stockroomBtn2.Visible = false;
             this.stockroomBtn2.Click += new System.EventHandler(this.stockroomBtn2_Click);
             // 
-            // panel1
+            // stockroomPanel
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.graphButton4);
-            this.panel1.Controls.Add(this.graphButton3);
-            this.panel1.Controls.Add(this.graphButton2);
-            this.panel1.Controls.Add(this.graphButton1);
-            this.panel1.Controls.Add(this.refreshStockroom);
-            this.panel1.Controls.Add(this.stockroomBtn4);
-            this.panel1.Controls.Add(this.stockroomBtn3);
-            this.panel1.Controls.Add(this.hdrStockroom);
-            this.panel1.Controls.Add(this.stockroomBtn2);
-            this.panel1.Controls.Add(this.stockroomBtn1);
-            this.panel1.Location = new System.Drawing.Point(12, 39);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(688, 663);
-            this.panel1.TabIndex = 14;
+            this.stockroomPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.stockroomPanel.Controls.Add(this.graphPanel);
+            this.stockroomPanel.Controls.Add(this.stockroomBtn4);
+            this.stockroomPanel.Controls.Add(this.refreshStockroom);
+            this.stockroomPanel.Controls.Add(this.stockroomBtn3);
+            this.stockroomPanel.Controls.Add(this.hdrStockroom);
+            this.stockroomPanel.Controls.Add(this.stockroomBtn2);
+            this.stockroomPanel.Controls.Add(this.stockroomBtn1);
+            this.stockroomPanel.Location = new System.Drawing.Point(20, 28);
+            this.stockroomPanel.Name = "stockroomPanel";
+            this.stockroomPanel.Size = new System.Drawing.Size(688, 663);
+            this.stockroomPanel.TabIndex = 14;
             // 
-            // timer
+            // graphPanel
             // 
-            this.timer.Interval = 15;
-            this.timer.Tick += new System.EventHandler(this.timer1_Tick);
+            this.graphPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.graphPanel.Controls.Add(this.label5);
+            this.graphPanel.Controls.Add(this.simpleButton4);
+            this.graphPanel.Controls.Add(this.simpleButton3);
+            this.graphPanel.Controls.Add(this.simpleButton2);
+            this.graphPanel.Controls.Add(this.simpleButton1);
+            this.graphPanel.Location = new System.Drawing.Point(-1, 245);
+            this.graphPanel.Name = "graphPanel";
+            this.graphPanel.Size = new System.Drawing.Size(688, 417);
+            this.graphPanel.TabIndex = 22;
             // 
-            // graphButton1
+            // simpleButton4
             // 
-            this.graphButton1.BackColor = System.Drawing.Color.DarkOrange;
-            this.graphButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.graphButton1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.graphButton1.Location = new System.Drawing.Point(18, 290);
-            this.graphButton1.Name = "graphButton1";
-            this.graphButton1.Size = new System.Drawing.Size(220, 60);
-            this.graphButton1.TabIndex = 18;
-            this.graphButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.graphButton1.UseVisualStyleBackColor = false;
-            this.graphButton1.Visible = false;
+            this.simpleButton4.Appearance.BackColor = System.Drawing.Color.DarkSalmon;
+            this.simpleButton4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.simpleButton4.Appearance.Options.UseBackColor = true;
+            this.simpleButton4.Appearance.Options.UseFont = true;
+            this.simpleButton4.Appearance.Options.UseTextOptions = true;
+            this.simpleButton4.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.simpleButton4.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.simpleButton4.Location = new System.Drawing.Point(31, 340);
+            this.simpleButton4.Name = "simpleButton4";
+            this.simpleButton4.Size = new System.Drawing.Size(220, 60);
+            this.simpleButton4.TabIndex = 25;
+            this.simpleButton4.Visible = false;
+            this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
             // 
-            // graphButton2
+            // simpleButton3
             // 
-            this.graphButton2.BackColor = System.Drawing.Color.RoyalBlue;
-            this.graphButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.graphButton2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.graphButton2.Location = new System.Drawing.Point(18, 390);
-            this.graphButton2.Name = "graphButton2";
-            this.graphButton2.Size = new System.Drawing.Size(220, 60);
-            this.graphButton2.TabIndex = 19;
-            this.graphButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.graphButton2.UseVisualStyleBackColor = false;
-            this.graphButton2.Visible = false;
+            this.simpleButton3.Appearance.BackColor = System.Drawing.Color.DarkKhaki;
+            this.simpleButton3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.simpleButton3.Appearance.Options.UseBackColor = true;
+            this.simpleButton3.Appearance.Options.UseFont = true;
+            this.simpleButton3.Appearance.Options.UseTextOptions = true;
+            this.simpleButton3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.simpleButton3.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.simpleButton3.Location = new System.Drawing.Point(31, 239);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(220, 60);
+            this.simpleButton3.TabIndex = 24;
+            this.simpleButton3.Visible = false;
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
             // 
-            // graphButton3
+            // simpleButton2
             // 
-            this.graphButton3.BackColor = System.Drawing.Color.DarkKhaki;
-            this.graphButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.graphButton3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.graphButton3.Location = new System.Drawing.Point(18, 490);
-            this.graphButton3.Name = "graphButton3";
-            this.graphButton3.Size = new System.Drawing.Size(220, 60);
-            this.graphButton3.TabIndex = 20;
-            this.graphButton3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.graphButton3.UseVisualStyleBackColor = false;
-            this.graphButton3.Visible = false;
+            this.simpleButton2.Appearance.BackColor = System.Drawing.Color.BlueViolet;
+            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.simpleButton2.Appearance.Options.UseBackColor = true;
+            this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.Appearance.Options.UseTextOptions = true;
+            this.simpleButton2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.simpleButton2.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.simpleButton2.Location = new System.Drawing.Point(31, 139);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(220, 60);
+            this.simpleButton2.TabIndex = 23;
+            this.simpleButton2.Visible = false;
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
-            // graphButton4
+            // simpleButton1
             // 
-            this.graphButton4.BackColor = System.Drawing.Color.DarkSalmon;
-            this.graphButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.graphButton4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.graphButton4.Location = new System.Drawing.Point(18, 590);
-            this.graphButton4.Name = "graphButton4";
-            this.graphButton4.Size = new System.Drawing.Size(220, 60);
-            this.graphButton4.TabIndex = 21;
-            this.graphButton4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.graphButton4.UseVisualStyleBackColor = false;
-            this.graphButton4.Visible = false;
+            this.simpleButton1.Appearance.BackColor = System.Drawing.Color.LightSlateGray;
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.simpleButton1.Appearance.Options.UseBackColor = true;
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.Appearance.Options.UseTextOptions = true;
+            this.simpleButton1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.simpleButton1.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.simpleButton1.Location = new System.Drawing.Point(31, 39);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(220, 60);
+            this.simpleButton1.TabIndex = 22;
+            this.simpleButton1.Visible = false;
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label5.Location = new System.Drawing.Point(3, 14);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(249, 13);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "You can click the button for detailed graph!";
             // 
             // mainPage
             // 
@@ -708,23 +737,26 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1234, 731);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
+            this.ClientSize = new System.Drawing.Size(1251, 720);
+            this.ControlBox = false;
+            this.Controls.Add(this.stockroomPanel);
+            this.Controls.Add(this.opsPanel);
+            this.Controls.Add(this.productPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.Name = "mainPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "main";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.main_FormClosing_1);
             this.Load += new System.EventHandler(this.mainPage_Load);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.productPanel.ResumeLayout(false);
+            this.productPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productTable)).EndInit();
-            this.panel3.ResumeLayout(false);
+            this.opsPanel.ResumeLayout(false);
             this.pnlConfirmDelete.ResumeLayout(false);
             this.pnlConfirmDelete.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this.stockroomPanel.ResumeLayout(false);
+            this.graphPanel.ResumeLayout(false);
+            this.graphPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -732,7 +764,7 @@
         #endregion
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel productPanel;
         private System.Windows.Forms.Button hdrUserOp;
         private System.Windows.Forms.Button exit;
         private System.Windows.Forms.Button delUser;
@@ -741,20 +773,17 @@
         private System.Windows.Forms.Button addAdmin;
         private System.Windows.Forms.Button deleteProduct;
         private System.Windows.Forms.Button hdrProduct;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel opsPanel;
         private System.Windows.Forms.Button hdrStockroom;
         private System.Windows.Forms.Button stockroomBtn1;
         private System.Windows.Forms.Button stockroomBtn2;
-        private System.Windows.Forms.Button category;
         private System.Windows.Forms.ComboBox categoryList;
         private System.Windows.Forms.Button addProduct;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView productTable;
         private System.Windows.Forms.Button reduce;
         private System.Windows.Forms.Button increase;
         private System.Windows.Forms.TextBox prdValue;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Panel stockroomPanel;
         private System.Windows.Forms.Button hdrStockroomOp;
         private System.Windows.Forms.Button addStockroom;
         private System.Windows.Forms.Button stockroomBtn4;
@@ -768,12 +797,16 @@
         private System.Windows.Forms.Panel pnlConfirmDelete;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblConfirm;
         private System.Windows.Forms.TextBox txtConfirm;
+        public System.Windows.Forms.DataGridView productTable;
         private System.Windows.Forms.Button refreshTable;
-        private System.Windows.Forms.Button graphButton4;
-        private System.Windows.Forms.Button graphButton3;
-        private System.Windows.Forms.Button graphButton2;
-        private System.Windows.Forms.Button graphButton1;
+        private System.Windows.Forms.Panel graphPanel;
+        private DevExpress.XtraEditors.SimpleButton simpleButton4;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private System.Windows.Forms.Button disconnectButton;
+        private System.Windows.Forms.Label label5;
     }
 }

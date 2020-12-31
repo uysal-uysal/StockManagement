@@ -13,28 +13,27 @@ namespace StokOtomasyonu
 {
     public partial class addPrd : Form
     {
-
         public addPrd()
         {
             InitializeComponent();
         }
 
-
-
-
         private void Form1_Load(object sender, EventArgs e)
         {
-          
+
         }
+
 
         DB database = new DB();
         mainPage mainpage = new mainPage();
+
 
         private void addPrdButton_Click(object sender, EventArgs e)
         {
             //check this id is already exist at warehouse?
             string checkId = $"SELECT count(warehouse) as kontrol FROM {mainPage.productType} WHERE id = {int.Parse(txtId.Text)} AND warehouse = {mainPage.store}";
             MySqlDataReader reader = database.Reader(checkId);
+
             mainpage.checkTotalCapacity(int.Parse(mainPage.store));
             mainpage.checkCurrentCapacity(int.Parse(mainPage.store));
 
@@ -49,8 +48,9 @@ namespace StokOtomasyonu
                             string query = $"INSERT INTO {mainPage.productType} (id,name,stock,warehouse) " +
                                       $"VALUES ('{int.Parse(txtId.Text)}','{txtName.Text}','{int.Parse(txtStock.Text)}','{mainPage.store}')";
                             database.ExecuteQuery(query);
+                            mainpage.updateCapacity();
+                            mainpage.productTable.DataSource = database.ListDatas(mainPage.productType, mainPage.store).Tables[0];
                             mainpage.draw();
-                            this.Hide();
                         }
                         else
                         {
@@ -69,10 +69,10 @@ namespace StokOtomasyonu
             }
             finally
             {
+                this.Close();
                 database.Disconnect();
             }
         }
-
 
         private void exitButton_Click(object sender, EventArgs e)
         {

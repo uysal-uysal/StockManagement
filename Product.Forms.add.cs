@@ -45,6 +45,7 @@ namespace StokOtomasyonu
                     {
                         if (mainPage.currentCapacity + int.Parse(txtStock.Text) <= mainPage.totalCapacity)
                         {
+                            //if capacity is enough?
                             string query = $"INSERT INTO {mainPage.productType} (id,name,stock,warehouse) " +
                                       $"VALUES ('{int.Parse(txtId.Text)}','{txtName.Text}','{int.Parse(txtStock.Text)}','{mainPage.store}')";
                             database.ExecuteQuery(query);

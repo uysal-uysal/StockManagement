@@ -71,11 +71,11 @@
             this.stockroomBtn2 = new System.Windows.Forms.Button();
             this.stockroomPanel = new System.Windows.Forms.Panel();
             this.graphPanel = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.label5 = new System.Windows.Forms.Label();
             this.productPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productTable)).BeginInit();
             this.opsPanel.SuspendLayout();
@@ -553,7 +553,7 @@
             // 
             // stockroomBtn4
             // 
-            this.stockroomBtn4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(188)))), ((int)(((byte)(125)))));
+            this.stockroomBtn4.BackColor = System.Drawing.Color.DarkSalmon;
             this.stockroomBtn4.FlatAppearance.BorderSize = 0;
             this.stockroomBtn4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stockroomBtn4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -569,7 +569,7 @@
             // 
             // stockroomBtn3
             // 
-            this.stockroomBtn3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(188)))), ((int)(((byte)(125)))));
+            this.stockroomBtn3.BackColor = System.Drawing.Color.DarkKhaki;
             this.stockroomBtn3.FlatAppearance.BorderSize = 0;
             this.stockroomBtn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stockroomBtn3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -599,7 +599,7 @@
             // 
             // stockroomBtn1
             // 
-            this.stockroomBtn1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(188)))), ((int)(((byte)(125)))));
+            this.stockroomBtn1.BackColor = System.Drawing.Color.LightSlateGray;
             this.stockroomBtn1.FlatAppearance.BorderSize = 0;
             this.stockroomBtn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stockroomBtn1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -615,7 +615,7 @@
             // 
             // stockroomBtn2
             // 
-            this.stockroomBtn2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(188)))), ((int)(((byte)(125)))));
+            this.stockroomBtn2.BackColor = System.Drawing.Color.BlueViolet;
             this.stockroomBtn2.FlatAppearance.BorderSize = 0;
             this.stockroomBtn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stockroomBtn2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -656,6 +656,16 @@
             this.graphPanel.Name = "graphPanel";
             this.graphPanel.Size = new System.Drawing.Size(688, 417);
             this.graphPanel.TabIndex = 22;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label5.Location = new System.Drawing.Point(3, 14);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(249, 13);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "You can click the button for detailed graph!";
             // 
             // simpleButton4
             // 
@@ -720,16 +730,6 @@
             this.simpleButton1.TabIndex = 22;
             this.simpleButton1.Visible = false;
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label5.Location = new System.Drawing.Point(3, 14);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(249, 13);
-            this.label5.TabIndex = 26;
-            this.label5.Text = "You can click the button for detailed graph!";
             // 
             // mainPage
             // 

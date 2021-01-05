@@ -28,74 +28,6 @@ namespace StokOtomasyonu
 
         }
 
-        public bool checkStockroom(int id)
-        {
-            string query = $"SELECT count(id) as kontrol FROM stockroom WHERE id = {id}";
-            MySqlDataReader reader = database.Reader(query);
-
-            try
-            {
-                while (reader.Read())
-                {
-                    if (int.Parse(reader[0].ToString()) == 1)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
-            }
-            finally
-            {
-                database.Disconnect();
-            }
-            return false;
-        }
-
-
-        public void draw()
-        {
-            addStr.count();
-
-            SimpleButton[] graphBar = new SimpleButton[4];
-            graphBar[0]= simpleButton1;
-            graphBar[1]= simpleButton2;
-            graphBar[2]= simpleButton3;
-            graphBar[3]= simpleButton4;
-
-            Button[] stockroomButtons = new Button[4];
-            stockroomButtons[0] = stockroomBtn1;
-            stockroomButtons[1] = stockroomBtn2;
-            stockroomButtons[2] = stockroomBtn3;
-            stockroomButtons[3] = stockroomBtn4;
-
-
-            for (int i = 0; i < 4; i++)
-            {
-                if (checkStockroom(i+1))
-                {
-
-                    graphBar[i].LookAndFeel.Style = LookAndFeelStyle.Flat;
-                    graphBar[i].LookAndFeel.UseDefaultLookAndFeel = false;
-                    graphBar[i].Appearance.Options.UseBackColor = true;
-
-                    stockroomButtons[i].Visible = true;
-                    graphBar[i].Visible = true;
-
-                    stockroomButtons[i].Text = setName(i + 1);
-                    checkCurrentCapacity(i + 1);
-                    graphBar[i].Text = setName(i + 1) + " - " + currentCapacity.ToString(); ;
-                    graphBar[i].Width = 50 + (int.Parse(currentCapacity.ToString()) * 3);
-
-                }
-            }
-        }
 
 
         DB database = new DB();
@@ -114,44 +46,46 @@ namespace StokOtomasyonu
         public static int totalCapacity = 0;
         public static int currentCapacity = 0;
 
+        
 
-        private void stockroomBtn1_Click(object sender, EventArgs e)
+        public void draw()
         {
-            store = "1";
-            productPanel.Visible = true;
-            productTable.DataSource = null;
-            deleteStockroom.Visible = true;
-            updateCapacity();
-        }
+            //draw stockroom buttons and graph buttons
+            addStr.count();
+
+            SimpleButton[] graphBar = new SimpleButton[4];
+            graphBar[0] = simpleButton1;
+            graphBar[1] = simpleButton2;
+            graphBar[2] = simpleButton3;
+            graphBar[3] = simpleButton4;
+
+            Button[] stockroomButtons = new Button[4];
+            stockroomButtons[0] = stockroomBtn1;
+            stockroomButtons[1] = stockroomBtn2;
+            stockroomButtons[2] = stockroomBtn3;
+            stockroomButtons[3] = stockroomBtn4;
 
 
-        private void stockroomBtn2_Click(object sender, EventArgs e)
-        {
-            store = "2";
-            productPanel.Visible = true;
-            productTable.DataSource = null;
-            deleteStockroom.Visible = true;
-            updateCapacity();
-        }
+            for (int i = 0; i < 4; i++)
+            {
+                if (checkStockroom(i + 1))
+                {
+                    //set design of graph buttons
+                    graphBar[i].LookAndFeel.Style = LookAndFeelStyle.Flat;
+                    graphBar[i].LookAndFeel.UseDefaultLookAndFeel = false;
+                    graphBar[i].Appearance.Options.UseBackColor = true;
 
+                    stockroomButtons[i].Visible = true;
+                    graphBar[i].Visible = true;
 
-        private void stockroomBtn3_Click(object sender, EventArgs e)
-        {
-            store = "3";
-            productPanel.Visible = true;
-            productTable.DataSource = null;
-            deleteStockroom.Visible = true;
-            updateCapacity();
-        }
+                    stockroomButtons[i].Text = setName(i + 1);
+                    checkCurrentCapacity(i + 1);
+                    checkTotalCapacity(i + 1);
+                    graphBar[i].Text = setName(i + 1) + " - " + currentCapacity.ToString() + "/" + totalCapacity.ToString();
+                    graphBar[i].Width = 50 + (int.Parse(currentCapacity.ToString()) * 3);
 
-
-        private void stockroomBtn4_Click(object sender, EventArgs e)
-        {
-            store = "4";
-            productPanel.Visible = true;
-            productTable.DataSource = null;
-            deleteStockroom.Visible = true;
-            updateCapacity();
+                }
+            }
         }
 
 
@@ -187,6 +121,7 @@ namespace StokOtomasyonu
                             cmbDeleteStockroom.Items.Add(setName(i + 1).ToString());
                         }
                     }
+                    //open delete tab
                     cmbDeleteStockroom.SelectedIndex = 0;
                     pnlConfirmDelete.Visible = true;
                     lblConfirm.Text = "DELETE-DELETE " + cmbDeleteStockroom.SelectedItem.ToString();
@@ -206,6 +141,7 @@ namespace StokOtomasyonu
 
         private void cmbDeleteStockroom_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //set 'delete confirmation' text
             lblConfirm.Text = "DELETE-DELETE " + cmbDeleteStockroom.SelectedItem.ToString();
         }
 
@@ -236,7 +172,7 @@ namespace StokOtomasyonu
 
                 foreach (var item in category)
                 {
-                    string deletePrd = $"DELETE FROM {item} WHERE warehouse = {store}";
+                    string deletePrd = $"DELETE FROM {item} WHERE warehouse = {cmbDeleteStockroom.SelectedIndex + 1}";
                     //delete products from db where-> at this warehouse 
 
                     try
@@ -323,8 +259,8 @@ namespace StokOtomasyonu
 
         private void addCommon_Click(object sender, EventArgs e)
         {
-            stt = false;
             //mean of stt--> if true, user admin
+            stt = false;
             regPage register = new regPage();
             register.Show();
         }
@@ -488,10 +424,6 @@ namespace StokOtomasyonu
         }
 
 
-       
-
-       
-
         public void checkTotalCapacity(int stockroom)
         {
             string checkcapacity = $"SELECT capacity FROM stockroom WHERE id={stockroom}";
@@ -543,8 +475,6 @@ namespace StokOtomasyonu
             }
         }
 
-       
-
 
         public void updateCapacity()
         {
@@ -552,6 +482,39 @@ namespace StokOtomasyonu
             checkCurrentCapacity(int.Parse(store));
             lblCapacity.Text = currentCapacity.ToString() + " / " + totalCapacity.ToString();
         }
+
+
+        public bool checkStockroom(int id)
+        {
+            //check is there a warehouse
+            string query = $"SELECT count(id) as kontrol FROM stockroom WHERE id = {id}";
+            MySqlDataReader reader = database.Reader(query);
+
+            try
+            {
+                while (reader.Read())
+                {
+                    if (int.Parse(reader[0].ToString()) == 1)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("err" + MessageBox.Show(err.Message) + MessageBoxButtons.OK + MessageBoxIcon.Error);
+            }
+            finally
+            {
+                database.Disconnect();
+            }
+            return false;
+        }
+
 
         private void refreshTable_Click(object sender, EventArgs e)
         {
@@ -571,11 +534,53 @@ namespace StokOtomasyonu
             }
         }
 
+
+        private void stockroomBtn1_Click(object sender, EventArgs e)
+        {
+            store = "1";
+            productPanel.Visible = true;
+            productTable.DataSource = null;
+            deleteStockroom.Visible = true;
+            updateCapacity();
+        }
+
+
+        private void stockroomBtn2_Click(object sender, EventArgs e)
+        {
+            store = "2";
+            productPanel.Visible = true;
+            productTable.DataSource = null;
+            deleteStockroom.Visible = true;
+            updateCapacity();
+        }
+
+
+        private void stockroomBtn3_Click(object sender, EventArgs e)
+        {
+            store = "3";
+            productPanel.Visible = true;
+            productTable.DataSource = null;
+            deleteStockroom.Visible = true;
+            updateCapacity();
+        }
+
+
+        private void stockroomBtn4_Click(object sender, EventArgs e)
+        {
+            store = "4";
+            productPanel.Visible = true;
+            productTable.DataSource = null;
+            deleteStockroom.Visible = true;
+            updateCapacity();
+        }
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             Application.Restart();
             Environment.Exit(0);
         }
+
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
@@ -583,6 +588,7 @@ namespace StokOtomasyonu
             graph graph = new graph();
             graph.Show();
         }
+
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
@@ -592,12 +598,14 @@ namespace StokOtomasyonu
 
         }
 
+
         private void simpleButton3_Click(object sender, EventArgs e)
         {
             graphStore = 3;
             graph graph = new graph();
             graph.Show();
         }
+
 
         private void simpleButton4_Click(object sender, EventArgs e)
         {

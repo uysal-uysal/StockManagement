@@ -35,6 +35,7 @@ namespace StokOtomasyonu
 
             try
             {
+                //execute query and draw buttons/graphbuttons
                 database.ExecuteQuery(query);
                 prdTable.DataSource = database.ListDatas(mainPage.productType, mainPage.store).Tables[0];
                 mainpage.draw();

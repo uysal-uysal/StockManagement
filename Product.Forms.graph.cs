@@ -179,6 +179,8 @@ namespace StokOtomasyonu
             sortButton7.Visible = true;
         }
 
+
+        //set prd type
         private void sortButton1_Click(object sender, EventArgs e)
         {
             productType = "drinks";

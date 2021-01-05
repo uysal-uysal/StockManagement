@@ -31,6 +31,7 @@ namespace StokOtomasyonu
 
         public void count()
         {
+            //count warehouse
             string query = $"SELECT count(id) as kontrol FROM stockroom";
             MySqlDataReader reader = database.Reader(query);
             try
@@ -67,8 +68,10 @@ namespace StokOtomasyonu
                 {
                     if (int.Parse(reader[0].ToString()) < 1 && countStockroom < 4)
                     {
+                        //if number of warehouse < 4
                         if (int.Parse(txtCapacity.Text) > 0 && int.Parse(txtCapacity.Text) < 200)
                         {
+                            //if capacity under 200
                             string query = $"INSERT INTO stockroom (id,name,capacity) " +
                                        $"VALUES ('{int.Parse(cmbId.SelectedItem.ToString())}','{txtName.Text}','{int.Parse(txtCapacity.Text)}')";
                             database.ExecuteQuery(query);
@@ -99,6 +102,7 @@ namespace StokOtomasyonu
        
         private void txtCapacity_KeyPress(object sender, KeyPressEventArgs e)
         {
+            //only type number
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;

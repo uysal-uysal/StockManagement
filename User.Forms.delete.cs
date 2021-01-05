@@ -32,6 +32,7 @@ namespace StokOtomasyonu
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
+            //delete selected user
             string query = $"DELETE FROM users WHERE username = '{userTable.SelectedRows[0].Cells[1].Value.ToString()}'";
 
             try
